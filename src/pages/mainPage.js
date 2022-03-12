@@ -1,4 +1,5 @@
 import '../CSS/mainPage.css';
+import '../CSS/generalcss.css';
 import Group9 from '../assets/Group9.png';
 import Group13 from '../assets/Group13.png';
 import Icon from '../assets/Icon.png';

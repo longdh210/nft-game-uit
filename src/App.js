@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import LoginPage from './pages/loginPage';
+import LoginPage from './pages/mainPage';
 import WaitingPage from './pages/waitingPage';
 import MenuPage from './pages/menuPage';
 
