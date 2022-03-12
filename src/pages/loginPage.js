@@ -1,4 +1,4 @@
-import '../App.css';
+import '../CSS/mainPage.css';
 import Group9 from '../assets/Group9.png';
 import Group13 from '../assets/Group13.png';
 import Icon from '../assets/Icon.png';
