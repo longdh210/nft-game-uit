@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/mainPage';
-import WaitingPage from './pages/waitingPage';
 import MenuPage from './pages/menuPage';
 
 function App() {
@@ -8,7 +7,6 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<LoginPage />} />
-        <Route path="/waiting" element={<WaitingPage />} />
         <Route path='/menu' element={<MenuPage/>}/>
       </Routes>
     </div>

@@ -1,5 +1,5 @@
-import '../CSS/mainPage.css';
-import '../CSS/generalcss.css';
+import '../styles/mainPage.css';
+import '../styles/generalcss.css';
 import Group9 from '../assets/Group9.png';
 import Group13 from '../assets/Group13.png';
 import Icon from '../assets/Icon.png';
@@ -7,8 +7,15 @@ import CardBackside from '../assets/CardBackside4.png';
 import TempPcard from '../assets/TempPcard.png';
 import TempRcard from '../assets/TempRcard.png';
 import TempScard from '../assets/TempScard.png';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate('/menu');
+    }
+
     return (
         <div className="App">
             <div className="layout1">
@@ -34,7 +41,7 @@ function Login() {
             <div className="layout2">
                 <img src={Icon} alt="Icon" className="logo" />
                 <h1 className="header1">NFT Rock Paper Sisscor</h1>
-                <h1 className="header2">Play Now</h1>
+                <h1 className="header2" onClick={handleClick}>Play Now</h1>
                 <img src={Group9} alt="corner" className="corner2" />
             </div>
         </div>

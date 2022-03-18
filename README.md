@@ -1,16 +1,15 @@
-## Available Scripts
+# Basic Sample Hardhat Project
 
-In the project directory, you can run:
+This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
 
-### `npm start`
+Try running some of the following tasks:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-### My team 
-
-Duong Hoang Long - 19521779
-Le Nguyen Minh Khoa - 19521693
-
+```shell
+npx hardhat accounts
+npx hardhat compile
+npx hardhat clean
+npx hardhat test
+npx hardhat node
+node scripts/sample-script.js
+npx hardhat help
+```

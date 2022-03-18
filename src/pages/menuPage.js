@@ -1,4 +1,4 @@
-import "../CSS/menuPage.css"
+import "../styles/menuPage.css"
 import Icon from '../assets/Icon.png';
 import Group9 from '../assets/Group9.png';
 import Group13 from '../assets/Group13.png';
