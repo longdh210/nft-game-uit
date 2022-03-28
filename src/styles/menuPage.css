@@ -32,7 +32,7 @@ ul {
 
 .layout4 {
 
-  width         : 50%;
+  width         : 40%;
   display       : flex;
   flex-direction: column;
 }
@@ -48,31 +48,63 @@ ul {
 
 
 .container {
-  padding-left: 15px;
-  display       : flex;
-  flex-wrap     : wrap;
-  flex-direction: row;
-  margin-top    : 45px;
-  width         : 400px;
-  height        : 80px;
-  position: relative;
-  background-color: #555555;
+  --containerheight: 80px;
+  padding-left     : 15px;
+  display          : flex;
+  flex-wrap        : wrap;
+  flex-direction   : row;
+  margin-top       : 30px;
+  width            : 400px;
+  height           : var(--containerheight);
+  line-height      : var(--containerheight);
+  position         : relative;
+  background-color : #555555;
 }
 
 .playZone {
   margin-top: 60px;
 }
-.verticalCenter {
-  padding-left: 15px;
-  margin-left     : 69px;
-  font-size  : 35px;
-  color      : #FFFFFF;
-  font-family: Righteous;
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
+
+.playzoneText {
+
+  padding-left     : 15px;
+  margin-left      : 69px;
+  font-size        : 35px;
+  color            : #FFFFFF;
+  font-family      : Righteous;
+  text-align       : center;
+  position         : absolute;
+  top              : 50%;
+  -ms-transform    : translateY(-50%);
   -webkit-transform: translateY(-50%);
+  transform        : translateY(-50%);
+}
+
+.container2 {
+  --container2Height: 85px;
+  position          : relative;
+  margin-top        : 50px;
+  justify-content   : right;
+  width             : 700px;
+  height            : var(--container2Height);
+  line-height       : var(--container2Height);
+  align-items       : flex-end;
+  display           : flex;
+  gap               : 30px;
+
+}
+
+.element {
+  position : absolute;
+  top      : 50%;
   transform: translateY(-50%);
+}
+.menuLogo {
+  position: static;
+  display: block;
+  width: 456px;
+  height: 440px;
+  margin-top:50px;
+  margin-left: 55px;
 
 }

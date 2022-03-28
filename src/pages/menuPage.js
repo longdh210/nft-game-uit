@@ -1,45 +1,61 @@
-import "../styles/menuPage.css"
-import Icon from '../assets/Icon.png';
-import Group9 from '../assets/Group9.png';
-import Group13 from '../assets/Group13.png';
-import botSVG from '../assets/bot.svg';
-import rankSVG from '../assets/rank.svg';
-import historySVG from '../assets/history.svg';
-function Menu() {
-    return (<div className="App">
-        <div className="layout3">
-            <img src={Icon} alt="Icon" className="logoMenuPage" />
-            <div className="missionBox">
-                <h1 className="text">
-                    Mission:
-                    Play with bot (0/10) -Reward 0.01 BTC
-                    Play with bot (0/20) -
-                    Reward 0.02 BTC
+import '../styles/menuPage.css'
+import Icon from '../assets/Icon.png'
+import decorateCorner from '../assets/decorateCorner.png'
+import botSVG from '../assets/bot.svg'
+import rankSVG from '../assets/rank.svg'
+import historySVG from '../assets/history.svg'
+import profileSVG from '../assets/profile.svg'
+import shoppingCartSVG from '../assets/shoppingCart1.svg'
+import infoSVG from '../assets/info.svg'
+import cardsSVG from '../assets/cards.svg'
+import logo2 from '../assets/logo2.png'
 
-                </h1>
-            </div>
-            <div className="playZone">
-                <ul >
-                    <li className="container">
-                        <img src={botSVG} ></img>
-
-                        <div className="verticalCenter" > Play with bots</div></li>
-                    <li className="container"><img src={rankSVG} ></img> <div className="verticalCenter">Play ranked</div></li>
-                    <li className="container"><img src={historySVG} ></img><div className="verticalCenter">Global rank</div></li>
+function Menu () {
+  return (<div className='App'>
+            <div className='layout3'>
+              <img src={Icon} alt='Icon' className='logoMenuPage' />
+              <div className='missionBox'>
+                <h1 className='text'>Mission: Play with bot (0/10) -Reward 0.01 BTC Play with bot (0/20) - Reward 0.02 BTC</h1>
+              </div>
+              <div className='playZone'>
+                <ul>
+                  <li className='container'>
+                    <img src={botSVG}></img>
+                    <div className='playzoneText'>
+                      Play with bots
+                    </div>
+                  </li>
+                  <li className='container'>
+                    <img src={rankSVG}></img>
+                    <div className='playzoneText'>
+                      Play ranked
+                    </div>
+                  </li>
+                  <li className='container'>
+                    <img src={historySVG}></img>
+                    <div className='playzoneText'>
+                      Global rank
+                    </div>
+                  </li>
                 </ul>
+              </div>
             </div>
+            <div className='layout4'>
+              <ul className='container2'>
+                <h1 className='text'>BTC:~0.999</h1>
+                <img src={shoppingCartSVG}></img>
+                <img src={cardsSVG}></img>
+                <img src={profileSVG}></img>
+                <img src={infoSVG}></img>
+              </ul>
+              
+                    <img src={logo2}  className="menuLogo" />
+                
 
+              <img src={decorateCorner} alt='corner' className='corner2' />
+            </div>
+          </div>
 
-        </div>
-        <div className="layout4">
-            <img src={Group9} alt="corner" className="corner2" />
-        </div>
-    </div>
-
-    );
-
-
-
-
+  )
 }
 export default Menu
