@@ -40,20 +40,32 @@ function Menu () {
                 </ul>
               </div>
             </div>
-            <div className='layout4'>
-              <ul className='container2'>
-                <h1 className='text'>BTC:~0.999</h1>
-                <img src={shoppingCartSVG}></img>
-                <img src={cardsSVG}></img>
-                <img src={profileSVG}></img>
-                <img src={infoSVG}></img>
-              </ul>
-              
-                    <img src={logo2}  className="menuLogo" />
-                
-
-              <img src={decorateCorner} alt='corner' className='corner2' />
+            <div className='layout5'>
+              <div className='layout4'>
+                <ul className='container2'>
+                  <h1 className='text'>BTC:~0.999</h1>
+                  <img src={shoppingCartSVG}></img>
+                  <img src={cardsSVG}></img>
+                  <img src={profileSVG}></img>
+                  <img src={infoSVG}></img>
+                </ul>
+                <img src={logo2} className='menuLogo' />
+              </div>
+              <div>
+                <div className='word'>
+                  <div>
+                    Current elo :3120
+                  </div>
+                  <div>
+                    Next rank: 3200
+                  </div>
+                </div>
+                <div className='progressBarContainer'>
+                  <div className='progressBarLoad'></div>
+                </div>
+              </div>
             </div>
+            <img src={decorateCorner} alt='corner' className='cornerMenuPage' />
           </div>
 
   )
