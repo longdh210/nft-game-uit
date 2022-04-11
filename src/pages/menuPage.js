@@ -41,7 +41,7 @@ function Menu () {
               </div>
             </div>
             <div className='layout5'>
-              <div className='layout4'>
+           
                 <ul className='container2'>
                   <h1 className='text'>BTC:~0.999</h1>
                   <img src={shoppingCartSVG}></img>
@@ -50,7 +50,7 @@ function Menu () {
                   <img src={infoSVG}></img>
                 </ul>
                 <img src={logo2} className='menuLogo' />
-              </div>
+             
               <div>
                 <div className='word'>
                   <div>
@@ -65,6 +65,7 @@ function Menu () {
                 </div>
               </div>
             </div>
+            <div className='wordCorner'>0x80e7e19d5950121304a2a4D265582a05cF2099f3</div>
             <img src={decorateCorner} alt='corner' className='cornerMenuPage' />
           </div>
 
