@@ -13,7 +13,7 @@ import logo2 from '../assets/logo2.png'
 function Menu () {
   return (<div className='App'>
             <div className='layout3'>
-              <img src={Icon} alt='Icon' className='logoMenuPage' />
+              <img src={Icon} alt='Icon' className='logoMain' />
               <div className='missionBox'>
                 <h1 className='text'>Mission: Play with bot (0/10) -Reward 0.01 BTC Play with bot (0/20) - Reward 0.02 BTC</h1>
               </div>
@@ -51,7 +51,7 @@ function Menu () {
                 </ul>
                 <img src={logo2} className='menuLogo' />
              
-              <div>
+              <div className='progressBarBox'>
                 <div className='word'>
                   <div>
                     Current elo :3120
