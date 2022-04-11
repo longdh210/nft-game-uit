@@ -65,7 +65,7 @@ function Menu () {
                 </div>
               </div>
             </div>
-            <div className='wordCorner'>0x80e7e19d5950121304a2a4D265582a05cF2099f3</div>
+            <div className='wordCorner'>Your address: 0x80e7e19d5950121304a2a4D265582a05cF2099f3</div>
             <img src={decorateCorner} alt='corner' className='cornerMenuPage' />
           </div>
 
