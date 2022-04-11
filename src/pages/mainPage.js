@@ -8,12 +8,22 @@ import TempPcard from '../assets/TempPcard.png';
 import TempRcard from '../assets/TempRcard.png';
 import TempScard from '../assets/TempScard.png';
 import { useNavigate } from 'react-router-dom';
+import { connect, connectWallet } from '../redux/blockchain/blockchainActions';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Login() {
+    const dispatch = useDispatch();
+    const blockchain = useSelector((state) => state.blockchain);
     const navigate = useNavigate();
 
-    const handleClick = () => {
-        navigate('/menu');
+    const playPressed = async (e) => {
+        e.preventDefault();
+        await dispatch(connectWallet());
+        if(!window.ethereum) {
+            navigate("/menu");
+        } else {
+            navigate("/menu");
+        }
     }
 
     return (
@@ -41,8 +51,12 @@ function Login() {
             <div className="layout2">
                 <img src={Icon} alt="Icon" className="logo" />
                 <h1 className="header1">NFT Rock Paper Sisscor</h1>
-                <h1 className="header2" onClick={handleClick}>Play Now</h1>
-                <img src={decorateCorner} alt="corner" className="corner2" />
+                <h1 className="header2" onClick={
+                    (e) => {
+                        playPressed(e);
+                    }
+                }>Play Now</h1>
+                <img src={Group9} alt="corner" className="corner2" />
             </div>
         </div>
     );
