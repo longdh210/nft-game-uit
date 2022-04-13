@@ -27,7 +27,7 @@ ul {
 
 .layout3 {
 
-  padding-left  : 69px;
+  padding-left  : 3.59375vw;
   width         : 45%;
   display       : flex;
   flex-direction: column;
@@ -38,7 +38,6 @@ ul {
 
 .layout5 {
   justify-self: end;
-
   width         : 55%;
   align-items   : end;
   display       : flex;
@@ -50,23 +49,25 @@ ul {
 
   width     : 11vw;
   height    : auto;
-  margin-top: 50px;
+  margin-top: 5.336179295624333vh;
 
 
 }
 
-
+.playzoneContainer{
+  width: 3.125vw;
+  height:6.4034151547492vh;
+}
 .container {
 
   padding-left: 15px;
   display     : flex;
-  min-height: 90px;
+
   align-items: center;
   margin-top : 3.2vh;
   width      : 21vw;
   max-width  : 458px;
   height     : 8.5vh;
-
   position        : relative;
   background-color: #555555;
 }
@@ -89,7 +90,7 @@ ul {
 .container2 {
 
   position   : relative;
-  margin     : 50px;
+  margin     : 5.336179295624333vh;
   align-items: center;
   display    : flex;
   gap        : 1.5625vw;

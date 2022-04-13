@@ -20,19 +20,19 @@ function Menu () {
               <div className='playZone'>
                 <ul>
                   <li className='container'>
-                    <img src={botSVG}></img>
+                    <img className='playzoneContainer' src={botSVG}></img>
                     <div className='playzoneText'>
                       Play with bots
                     </div>
                   </li>
                   <li className='container'>
-                    <img src={rankSVG}></img>
+                    <img className='playzoneContainer' src={rankSVG}></img>
                     <div className='playzoneText'>
                       Play ranked
                     </div>
                   </li>
                   <li className='container'>
-                    <img src={historySVG}></img>
+                    <img className='playzoneContainer' src={historySVG}></img>
                     <div className='playzoneText'>
                       Global rank
                     </div>
