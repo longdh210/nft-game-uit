@@ -44,10 +44,10 @@ function Menu () {
            
                 <ul className='container2'>
                   <h1 className='text'>BTC:~0.999</h1>
-                  <img src={shoppingCartSVG}></img>
-                  <img src={cardsSVG}></img>
-                  <img src={profileSVG}></img>
-                  <img src={infoSVG}></img>
+                  <img className='smallContainer'  src={shoppingCartSVG}></img>
+                  <img className='smallContainer'  src={cardsSVG}></img>
+                  <img className='smallContainer'  src={profileSVG}></img>
+                  <img className='smallContainer'  src={infoSVG}></img>
                 </ul>
                 <img src={logo2} className='menuLogo' />
              

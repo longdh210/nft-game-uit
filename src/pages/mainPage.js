@@ -56,7 +56,7 @@ function Login() {
                         playPressed(e);
                     }
                 }>Play Now</h1>
-                <img src={Group9} alt="corner" className="corner2" />
+                <img src={decorateCorner} alt="corner" className="corner2" />
             </div>
         </div>
     );

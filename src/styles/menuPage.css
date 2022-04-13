@@ -11,7 +11,7 @@ ul {
   height          : 23wh;
   max-height      : 250px;
   background-color: #555555;
-  border          : 10px solid white;
+  border          : 0.5vw solid white;
   display         : block;
   padding         : 2%;
   box-sizing      : border-box;
@@ -72,7 +72,7 @@ ul {
 }
 
 .playZone {
-  margin-top: 60px;
+  margin-top: 6.4vh;
 }
 
 .playzoneText {
@@ -92,15 +92,15 @@ ul {
   margin     : 50px;
   align-items: center;
   display    : flex;
-  gap        : 30px;
+  gap        : 1.5625vw;
 
 }
 
 
 .menuLogo {
 
-  width       : 456px;
-  height      : 440px;
+  width       : 23.75vw;
+  height      : 46.95837780149413vh;
   justify-self: center;
   align-self  : center;
 
@@ -110,9 +110,9 @@ ul {
   margin-left     : 2vw;
   margin-right    : 2vw;
   border          : solid;
-  border-width    : 4px;
+  border-width    : 0.35vw;
   background-color: #C4C4C4;
-  height          : 30px;
+  height          : 3.5vh;
 
 }
 
@@ -131,13 +131,13 @@ ul {
   bottom   : 0;
   right    : 0;
   transform: rotate(-180deg);
-  width    : 311px;
-  height   : 180px;
+  width    : 16.2vw;
+  height   : 19.2vh;
 }
 
 .word {
 
-  font-size      : 24px;
+  font-size      : calc(1vw + 1vh );
   color          : #FFFFFF;
   font-family    : Righteous;
   text-align     : start;
@@ -148,7 +148,7 @@ ul {
 }
 
 .wordCorner {
-  margin     : 15px;
+  margin     : 1.6vh;
   font-size  : calc(1vw + 1vh );
   color      : #FFFFFF;
   font-family: Righteous;
@@ -160,4 +160,10 @@ ul {
 .progressBarBox {
   align-self: center;
   width     : 38vw;
+}
+
+.smallContainer
+{
+  width: 4.427083333333333vw;
+  height: 9.071504802561366vh;
 }
