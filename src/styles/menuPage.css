@@ -60,7 +60,7 @@ ul {
 }
 .container {
 
-  padding-left: 15px;
+  padding-left: 0.78125vw;
   display     : flex;
 
   align-items: center;
@@ -78,7 +78,7 @@ ul {
 
 .playzoneText {
 
-  margin-left: 15px;
+  margin-left: 0.78125vw;
   font-size  : 2vw;
   color      : #FFFFFF;
   font-family: Righteous;
