@@ -1,4 +1,8 @@
 import Web3 from "web3";
+import RockPaperScissorToken from "../../RockPaperScissor.json";
+import { tokenaddress } from "../../config"
+
+import { fetchData  } from "../data/dataActions";
 
 const connectRequest = () => {
     return {
@@ -29,6 +33,7 @@ const updateAccountRequest = (payload) => {
 
 export const connect = () => {
     return async (dispatch) => {
+        console.log("connected");
         dispatch(connectRequest());
         if (window.ethereum) {
             let web3 = new Web3(window.ethereum);
@@ -41,11 +46,17 @@ export const connect = () => {
                 });
                 console.log("accounts", accounts);
                 console.log("network", networkId);
+                // const rockPaperScissorData = await RockPaperScissorToken.networks[networkId];
                 if (networkId) {
+                    const rockPaperScissorToken = new web3.eth.Contract(
+                        RockPaperScissorToken.abi,
+                        tokenaddress
+                    )
                     dispatch(
                         connectSuccess({
                             account: accounts[0],
-                            web3: web3
+                            web3: web3,
+                            rockPaperScissorToken: rockPaperScissorToken
                         })
                     )
                     window.ethereum.on("accountsChanged", (accounts) => {
@@ -90,6 +101,7 @@ export const connectWallet = () => {
 export const updateAccount = (account) => {
     return async (dispatch) => {
         dispatch(updateAccountRequest({ account: account }));
+        dispatch(fetchData(account));
     }
 }
 
