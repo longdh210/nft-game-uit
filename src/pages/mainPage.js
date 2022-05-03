@@ -46,6 +46,7 @@ function Login() {
             console.log("Install metamask");
         } else {
             await mintNFT(blockchain.account);
+       
             navigate("/menu");
         }
     }
