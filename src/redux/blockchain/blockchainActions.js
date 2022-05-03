@@ -1,8 +1,8 @@
 import Web3 from "web3";
-import RockPaperScissorToken from "../../RockPaperScissor.json";
+import RockPaperScissorToken from "../../artifacts/contracts/RockPaperScissor.sol/RockPaperScissor.json";
 import { tokenaddress } from "../../config"
 
-import { fetchData  } from "../data/dataActions";
+import { fetchData } from "../data/dataActions";
 
 const connectRequest = () => {
     return {

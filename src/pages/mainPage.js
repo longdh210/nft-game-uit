@@ -14,40 +14,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from '../redux/data/dataActions'
 import RockPaperScissorToken from "../RockPaperScissor.json";
 import { tokenaddress } from "../config";
+import { ethers } from 'ethers'
 import Web3 from "web3";
 
 function Login() {
     const dispatch = useDispatch();
     const blockchain = useSelector((state) => state.blockchain);
+    const data = useSelector((state) => state.data);
     const navigate = useNavigate();
 
-    // const handleContract = async (_account) => {
-    //     await dispatch(connectWallet());
-    //     await dispatch(connect());
-    //     console.log("account", _account);
-    //     let web3 = new Web3(window.ethereum);
-    //     const rockPaperScissorToken = new web3.eth.Contract(
-    //         RockPaperScissorToken.abi,
-    //         tokenaddress
-    //     );
-    //     rockPaperScissorToken.methods
-    //         .createRandomCard()
-    //         .send({ 
-    //             from: "0x80e7e19d5950121304a2a4D265582a05cF2099f3",
-    //             value: web3.utils.toWei("0.1", "ether")
-    //         })
-    // }
-
     const playPressed = async (_account) => {
-        await dispatch(connectWallet());
-        await dispatch(connect());
-        console.log("blockchain", blockchain);
+        dispatch(connectWallet());
+        dispatch(connect());
         if(!window.ethereum) {
             console.log("Install metamask");
-        } else {
-            await mintNFT(blockchain.account);
-       
-            navigate("/menu");
+        } else if(data.numToken != 15){
+            console.log("balance mint:", data.numToken);
+            mintNFT(_account);
+            console.log("mint");
+            navigate('/play');
+        } else if (data.numToken == 15) {
+            console.log("balance:", data.numToken);
+            navigate('/play');
         }
     }
 
@@ -67,12 +55,29 @@ function Login() {
             });
     };
 
+    const checkTokenBalance = async (_account) => {
+        await blockchain.rockPaperScissorToken.methods
+            .getTokenBalance(_account)
+            .call(function(err, res) {
+                if(err) {
+                    console.log("An error occurred", err);
+                    return;
+                }
+                return res;
+            })
+    }
+
     useEffect(() => {
         if(blockchain.account != "" && blockchain.rockPaperScissorToken != null) {
             dispatch(fetchData(blockchain.account));
+            console.log("run");
         }
+    }, [blockchain.rockPaperScissorToken]);
+
+    useEffect(() => {
         dispatch(connect());
-    }, []);
+        console.log("run connect");
+    }, [])
 
     return (
         <div className="App">
