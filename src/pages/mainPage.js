@@ -16,18 +16,27 @@ import RockPaperScissorToken from "../RockPaperScissor.json";
 import { tokenaddress } from "../config";
 import { ethers } from 'ethers'
 import Web3 from "web3";
+import Dialog from '../components/dialog';
+
+
+
 
 function Login() {
     const dispatch = useDispatch();
     const blockchain = useSelector((state) => state.blockchain);
     const data = useSelector((state) => state.data);
     const navigate = useNavigate();
+    
+    const [buttonPopup,setButtonPopup]=useState(false);
+
 
     const playPressed = async (_account) => {
         dispatch(connectWallet());
         dispatch(connect());
         if(!window.ethereum) {
+      
             console.log("Install metamask");
+           
         } else if(data.numToken != 15){
             console.log("balance mint:", data.numToken);
             mintNFT(_account);
@@ -79,9 +88,12 @@ function Login() {
         console.log("run connect");
     }, [])
 
+
+    
+
     return (
-        <div className="App">
-            <div className="layout1">
+        <div className="App" >
+            <div className="layout1" >
                 <img src={decorateCorner} alt="corner" className="corner1" />
                 <div>
                     <img src={logo2} alt="Group 13" className="mainLogo" />
@@ -106,13 +118,20 @@ function Login() {
                 <h1 className="header1">NFT Rock Paper Scisscor</h1>
                 <h1 className="header2" onClick={
                     (e) => {
-                        e.preventDefault();
-                        playPressed(blockchain.account);
+                        
+                        
+                   
+                         e.preventDefault();
+                        setButtonPopup(true)
+                         console.log(1);
+                        // playPressed(blockchain.account);
                         // handleContract(blockchain.account);
                     }
                 }>Play Now</h1>
                 <img src={decorateCorner} alt="corner" className="corner2" />
             </div>
+            <Dialog trigger={buttonPopup} setTrigger={setButtonPopup}><h3>My popup</h3><p>hihihahaha</p></Dialog>
+          
         </div>
     );
 }
