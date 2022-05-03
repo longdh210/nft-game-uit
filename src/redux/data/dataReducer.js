@@ -2,6 +2,7 @@ const initialState = {
     loading: false,
     allTokens: [],
     allOwnerTokens: [],
+    numToken: null,
     error: false,
     errorMsg: "",
 }
@@ -17,7 +18,9 @@ const dataReducer = (state = initialState, action) => {
             return {
                 ...initialState,
                 loading: false,
-                allTokens: action.payload.allTokens
+                allTokens: action.payload.allTokens,
+                allOwnerTokens: action.payload.allOwnerTokens,
+                numToken: action.payload.numToken,
             };
         case "CHECK_DATA_FAILED":
             return {

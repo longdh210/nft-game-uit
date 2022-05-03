@@ -32,11 +32,16 @@ export const fetchData = (account) => {
                 .getState()
                 .blockchain.rockPaperScissorToken.methods.getOwnerCards(account)
                 .call();
-            
+            let numToken = await store
+                .getState()
+                .blockchain.rockPaperScissorToken.methods.getTokenBalance(account)
+                .call();
+                
             dispatch(
                 fetchDataSuccess({
                     allTokens,
-                    allOwnerTokens
+                    allOwnerTokens,
+                    numToken
                 })
             );
         } catch (err) {

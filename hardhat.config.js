@@ -4,6 +4,9 @@ const privateKey = fs.readFileSync(".secret").toString()
 
 module.exports = {
   defaultNetwork: "hardhat",
+  paths: {
+    artifacts: './src/artifacts',
+  },
   networks: {
     hardhat: {
       chainId: 1337

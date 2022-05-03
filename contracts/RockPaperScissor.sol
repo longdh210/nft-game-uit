@@ -13,6 +13,8 @@ contract RockPaperScissor is ERC721URIStorage, Ownable {
 
     uint256 fee = 0.01 ether;
 
+    mapping (address => uint256) addressToTokenBalance; 
+
     struct Card {
         uint256 tokenId;
         address owner;
@@ -57,6 +59,7 @@ contract RockPaperScissor is ERC721URIStorage, Ownable {
         for (int256 i = 0; i < 15; i++) {
             _createCard();
         }
+        addressToTokenBalance[msg.sender] = 15;
     }
 
     // Getters
@@ -81,5 +84,9 @@ contract RockPaperScissor is ERC721URIStorage, Ownable {
         require(ownerOf(_tokenId) == msg.sender);
         Card storage card = cards[_tokenId];
         card.level++;
+    }
+
+    function getTokenBalance(address _player) public view returns (uint256) {
+        return addressToTokenBalance[_player];
     }
 }
