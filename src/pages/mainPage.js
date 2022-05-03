@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import '../styles/mainPage.css';
 import '../styles/generalcss.css';
 import decorateCorner from '../assets/decorateCorner.png';
@@ -10,21 +11,67 @@ import TempScard from '../assets/TempScard.png';
 import { useNavigate } from 'react-router-dom';
 import { connect, connectWallet } from '../redux/blockchain/blockchainActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchData } from '../redux/data/dataActions'
+import RockPaperScissorToken from "../RockPaperScissor.json";
+import { tokenaddress } from "../config";
+import Web3 from "web3";
 
 function Login() {
     const dispatch = useDispatch();
     const blockchain = useSelector((state) => state.blockchain);
     const navigate = useNavigate();
 
-    const playPressed = async (e) => {
-        e.preventDefault();
+    // const handleContract = async (_account) => {
+    //     await dispatch(connectWallet());
+    //     await dispatch(connect());
+    //     console.log("account", _account);
+    //     let web3 = new Web3(window.ethereum);
+    //     const rockPaperScissorToken = new web3.eth.Contract(
+    //         RockPaperScissorToken.abi,
+    //         tokenaddress
+    //     );
+    //     rockPaperScissorToken.methods
+    //         .createRandomCard()
+    //         .send({ 
+    //             from: "0x80e7e19d5950121304a2a4D265582a05cF2099f3",
+    //             value: web3.utils.toWei("0.1", "ether")
+    //         })
+    // }
+
+    const playPressed = async (_account) => {
         await dispatch(connectWallet());
+        await dispatch(connect());
+        console.log("blockchain", blockchain);
         if(!window.ethereum) {
-            navigate("/menu");
+            console.log("Install metamask");
         } else {
+            await mintNFT(blockchain.account);
             navigate("/menu");
         }
     }
+
+    const mintNFT = (_account) => {
+        blockchain.rockPaperScissorToken.methods
+            .createRandomCard()
+            .send({
+                from: _account,
+                value: blockchain.web3.utils.toWei("0.01", "ether"),
+            })
+            .once("error", (err) => {
+                console.log(err);
+            })
+            .then((receipt) => {
+                console.log(receipt);
+                dispatch(fetchData(blockchain.account));
+            });
+    };
+
+    useEffect(() => {
+        if(blockchain.account != "" && blockchain.rockPaperScissorToken != null) {
+            dispatch(fetchData(blockchain.account));
+        }
+        dispatch(connect());
+    }, []);
 
     return (
         <div className="App">
@@ -50,10 +97,12 @@ function Login() {
             </div>
             <div className="layout2">
                 <img src={Icon} alt="Icon" className="logo" />
-                <h1 className="header1">NFT Rock Paper Sisscor</h1>
+                <h1 className="header1">NFT Rock Paper Scisscor</h1>
                 <h1 className="header2" onClick={
                     (e) => {
-                        playPressed(e);
+                        e.preventDefault();
+                        playPressed(blockchain.account);
+                        // handleContract(blockchain.account);
                     }
                 }>Play Now</h1>
                 <img src={decorateCorner} alt="corner" className="corner2" />

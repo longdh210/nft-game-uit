@@ -1,6 +1,7 @@
 const initialState = {
     loading: false,
     account: null,
+    rockPaperScissorToken: null,
     web3: null,
     errorMsg: "",
 };
@@ -17,6 +18,7 @@ const blockchainReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 account: action.payload.account,
+                rockPaperScissorToken: action.payload.rockPaperScissorToken,
                 web3: action.payload.web3,
             };
         case "CONNECTION_FAILED":
