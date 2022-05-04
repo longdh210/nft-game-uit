@@ -34,7 +34,7 @@ function Login() {
         dispatch(connectWallet());
         dispatch(connect());
         if(!window.ethereum) {
-      
+            setButtonPopup(true)
             console.log("Install metamask");
            
         } else if(data.numToken != 15){
@@ -122,15 +122,19 @@ function Login() {
                         
                    
                          e.preventDefault();
-                        setButtonPopup(true)
-                         console.log(1);
-                        // playPressed(blockchain.account);
+                      
+                   
+                         playPressed(blockchain.account);
                         // handleContract(blockchain.account);
                     }
                 }>Play Now</h1>
                 <img src={decorateCorner} alt="corner" className="corner2" />
             </div>
-            <Dialog trigger={buttonPopup} setTrigger={setButtonPopup}><h3>My popup</h3><p>hihihahaha</p></Dialog>
+            <Dialog trigger={buttonPopup} setTrigger={setButtonPopup}>
+                <h3 className='titleText'>Metamask wallet not installed</h3>
+                <br></br>
+                <p className='contentText'>Please install metamask at: <a className='link' href='https://metamask.io/' >https://metamask.io/</a></p>
+                </Dialog>
           
         </div>
     );
