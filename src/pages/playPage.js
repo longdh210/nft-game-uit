@@ -35,7 +35,7 @@ function Play () {
         PICK YOUR CARD
       </div>
       <div className='layoutThird'>
-        <div className='user-card-2' style={{'align-self': 'end'}}>
+        <div className='user-card-2' >
           <div className='user-info'>
             <img className='avt' src={UserAvt} alt='user-avt' /> Player B
           </div>

@@ -20,19 +20,19 @@ function Menu () {
               <div className='playZone'>
                 <ul>
                   <li className='container'>
-                    <img className='playzoneContainer' src={botSVG}></img>
+                    <img className='playzoneContainer' src={botSVG} alt='bot'></img>
                     <div className='playzoneText'>
                       Play with bots
                     </div>
                   </li>
                   <li className='container'>
-                    <img className='playzoneContainer' src={rankSVG}></img>
+                    <img className='playzoneContainer' src={rankSVG} alt='rank'></img>
                     <div className='playzoneText'>
                       Play ranked
                     </div>
                   </li>
                   <li className='container'>
-                    <img className='playzoneContainer' src={historySVG}></img>
+                    <img className='playzoneContainer' src={historySVG} alt='history'></img>
                     <div className='playzoneText'>
                       Global rank
                     </div>
@@ -44,12 +44,12 @@ function Menu () {
            
                 <ul className='container2'>
                   <h1 className='text'>BTC:~0.999</h1>
-                  <img className='smallContainer'  src={shoppingCartSVG}></img>
-                  <img className='smallContainer'  src={cardsSVG}></img>
-                  <img className='smallContainer'  src={profileSVG}></img>
-                  <img className='smallContainer'  src={infoSVG}></img>
+                  <img className='smallContainer'  src={shoppingCartSVG}alt='shoppingcart'></img>
+                  <img className='smallContainer'  src={cardsSVG}alt='cards'></img>
+                  <img className='smallContainer'  src={profileSVG}alt='profile'></img>
+                  <img className='smallContainer'  src={infoSVG}alt='info'></img>
                 </ul>
-                <img src={logo2} className='menuLogo' />
+                <img src={logo2} className='menuLogo' alt='logo'/>
              
               <div className='progressBarBox'>
                 <div className='word'>

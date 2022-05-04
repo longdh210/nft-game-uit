@@ -108,29 +108,13 @@
     padding         : 10px;
     flex-direction  : column;
     background-color: #555555;
-
+    align-self: end;
     height    : 126px;
     box-sizing: border-box;
 }
 
-.user-info {
-    padding-bottom: 10px;
-    border-bottom : 5px solid #C4C4C4;
-    font-family   : Righteous;
-    font-style    : normal;
-    font-weight   : normal;
-    font-size     : 20px;
-    color         : #fff
-}
 
-.user-hp {
-    padding-top: 10px;
-    font-family: Righteous;
-    font-style : normal;
-    font-weight: normal;
-    font-size  : 20px;
-    color      : #fff
-}
+
 
 .userCardList {
     width: max-content;
