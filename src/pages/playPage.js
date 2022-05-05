@@ -35,7 +35,7 @@ function Play () {
         PICK YOUR CARD
       </div>
       <div className='layoutThird'>
-        <div className='user-card-2' >
+        <div className='user-card-2'>
           <div className='user-info'>
             <img className='avt' src={UserAvt} alt='user-avt' /> Player B
           </div>
@@ -52,14 +52,8 @@ function Play () {
           <div className='removeCard'>
             <span>Removed Card</span>
           </div>
+          <img className='supportIcon' src={SupportIcon} alt='support icon' />
         </div>
-      </div>
-      <div className='supportIcon'>
-        <img
-          className='icon'
-          src={SupportIcon}
-          alt='support icon'
-          style={{width: '45px'}} />
       </div>
     </div>
 
