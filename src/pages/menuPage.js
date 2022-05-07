@@ -9,9 +9,20 @@ import shoppingCartSVG from '../assets/shoppingCart1.svg'
 import infoSVG from '../assets/info.svg'
 import cardsSVG from '../assets/cards.svg'
 import logo2 from '../assets/logo2.png'
+import video from '../assets/rotate1.mp4'
+import '../styles/generalcss.css';
+
 
 function Menu () {
-  return (<div className='App'>
+  return (
+    <div>
+       <video
+        autoPlay
+        loop
+        src={video}
+        muted>
+      </video>
+      <div className='App'>
             <div className='layout3'>
               <img src={Icon} alt='Icon' className='logoMain' />
               <div className='missionBox'>
@@ -41,16 +52,14 @@ function Menu () {
               </div>
             </div>
             <div className='layout5'>
-           
-                <ul className='container2'>
-                  <h1 className='text'>BTC:~0.999</h1>
-                  <img className='smallContainer'  src={shoppingCartSVG}alt='shoppingcart'></img>
-                  <img className='smallContainer'  src={cardsSVG}alt='cards'></img>
-                  <img className='smallContainer'  src={profileSVG}alt='profile'></img>
-                  <img className='smallContainer'  src={infoSVG}alt='info'></img>
-                </ul>
-                <img src={logo2} className='menuLogo' alt='logo'/>
-             
+              <ul className='container2'>
+                <h1 className='text'>BTC:~0.999</h1>
+                <img className='smallContainer' src={shoppingCartSVG} alt='shoppingcart'></img>
+                <img className='smallContainer' src={cardsSVG} alt='cards'></img>
+                <img className='smallContainer' src={profileSVG} alt='profile'></img>
+                <img className='smallContainer' src={infoSVG} alt='info'></img>
+              </ul>
+              <img src={logo2} className='menuLogo' alt='logo' />
               <div className='progressBarBox'>
                 <div className='word'>
                   <div>
@@ -65,9 +74,12 @@ function Menu () {
                 </div>
               </div>
             </div>
-            <div className='wordCorner'>Your address: 0x80e7e19d5950121304a2a4D265582a05cF2099f3</div>
+            <div className='wordCorner'>
+              Your address: 0x80e7e19d5950121304a2a4D265582a05cF2099f3
+            </div>
             <img src={decorateCorner} alt='corner' className='cornerMenuPage' />
           </div>
+    </div>
 
   )
 }

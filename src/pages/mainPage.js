@@ -17,6 +17,8 @@ import { tokenaddress } from "../config";
 import { ethers } from 'ethers'
 import Web3 from "web3";
 import Dialog from '../components/dialog';
+import video from '../assets/rotate1.mp4'
+
 
 
 
@@ -92,7 +94,12 @@ function Login() {
     
 
     return (
-        <div className="App" >
+        <div>
+            <video autoPlay loop src={video} muted >
+              
+            </video>
+            <div className="App">
+            
             <div className="layout1" >
                 <img src={decorateCorner} alt="corner" className="corner1" />
                 <div>
@@ -136,6 +143,7 @@ function Login() {
                 <p className='contentText'>Please install metamask at: <a className='link' href='https://metamask.io/' >https://metamask.io/</a></p>
                 </Dialog>
           
+        </div>
         </div>
     );
 }
