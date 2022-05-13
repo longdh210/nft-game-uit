@@ -1,0 +1,26 @@
+.developingText {
+    text-align : center;
+    font-family: Righteous;
+    font-style : normal;
+    font-weight: normal;
+    font-size  : calc(5.869797225186766vh + 2.8645833333333335vw);
+    color      : #FFFFFF;
+
+}
+
+.developingImage{
+
+    width: 30.8125vw;
+    height: auto;
+}
+
+.child {
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+
+}
