@@ -1,12 +1,33 @@
-import '../styles/playPage.css'
-import CardBackSide from '../assets/CardBackside4.png'
-import UserAvt from '../assets/user-avt.png'
-import TempPcard from '../assets/TempPcard.png'
-import TempRcard from '../assets/TempRcard.png'
-import TempScard from '../assets/TempScard.png'
-import SupportIcon from '../assets/supportIcon.png'
+import { useState, useEffect } from 'react';
+import '../styles/playPage.css';
+import CardBackSide from '../assets/CardBackside4.png';
+import UserAvt from '../assets/user-avt.png';
+import TempPcard from '../assets/TempPcard.png';
+import TempRcard from '../assets/TempRcard.png';
+import TempScard from '../assets/TempScard.png';
+import SupportIcon from '../assets/supportIcon.png';
+import { TokenRenderer } from '../components/tokenRenderer';
+import getItems from '../test';
+import { game, getUserChoice } from '../components/logicGame.js';
+import { rockItems, paperItems, scissorItems } from '../parts/items.js';
 
-function Play () {
+
+function Play() {
+  // const [countDown, setCountDown] = useState(15)
+
+  // useEffect(() => {
+  //   const timerId = setTimeout(() => {
+  //     setCountDown(countDown - 1);
+  //   }, 1000);
+  //   if(countDown == 0) {
+  //     clearTimeout(timerId);
+  //   }
+  // }, [countDown]);
+
+  const handleClickItem = (item) => {
+    game(item);
+  }
+
   return (
     <div className='playPage'>
       <div className='layoutFirst'>
@@ -28,11 +49,13 @@ function Play () {
         </div>
       </div>
       <div className='layoutSecond'>
-        COUNTDOWN:
-        <div>
-          15
+        <div className="countDown">
+        {/* {
+          countDown > 0? */}
+          <h1 style={{ fontSize: "50%" }}>COUNTDOWN: <br />{15}<br />PICK YOUR CARD</h1>
+          {/* :<></>
+        } */}
         </div>
-        PICK YOUR CARD
       </div>
       <div className='layoutThird'>
         <div className='user-card-2' >
@@ -44,9 +67,11 @@ function Play () {
           </div>
         </div>
         <div className='userCardList'>
-          <img className='card' src={TempPcard} alt='Paper card' />
-          <img className='card' src={TempRcard} alt='Rock card' />
-          <img className='card' src={TempScard} alt='Scissor card' />
+          {
+            getUserChoice(rockItems, paperItems, scissorItems).map((item, index) => (
+                <TokenRenderer token={item} key={index} onClick={() => handleClickItem(item)}></TokenRenderer>
+            ))
+          }
         </div>
         <div className='removePlace'>
           <div className='removeCard'>
@@ -59,7 +84,7 @@ function Play () {
           className='icon'
           src={SupportIcon}
           alt='support icon'
-          style={{width: '45px'}} />
+          style={{ width: '45px' }} />
       </div>
     </div>
 

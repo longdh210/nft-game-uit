@@ -21,14 +21,6 @@ import { fetchPost, fetchCheck } from '../fetchAPI/fetchAPI';
 import { css } from "@emotion/react";
 import ClipLoader from "react-spinners/ClipLoader";
 
-var web3 = new Web3("https://polygon-mumbai.g.alchemy.com/v2/1IISvtbO2J8Uz_s2akC4cdk9qm6rnrY0");
-
-const override = css`
-  display: block;
-  margin: 0 auto;
-  border-color: red;
-`;
-
 function Login() {
     const dispatch = useDispatch();
     const blockchain = useSelector((state) => state.blockchain);
@@ -36,9 +28,8 @@ function Login() {
     const navigate = useNavigate();
 
     let [loading, setLoading] = useState(false);
-    
-    const [buttonPopup,setButtonPopup]=useState(false);
 
+    const [buttonPopup,setButtonPopup]=useState(false);
 
     const playPressed = async (_account) => {
         dispatch(connectWallet());
@@ -49,10 +40,10 @@ function Login() {
             console.log("Install metamask");
         } else if(await fetchCheck(_account) == 1){
             navigate('/menu');
-        } else {
+        } else if(_account != null && await fetchCheck(_account) == 0) {
             mintNFT(_account);
-            await fetchPost(_account);
-        }
+            fetchPost(_account);
+        } else if(_account == null) {}
     }
 
     const mintNFT = (_account) => {
@@ -92,6 +83,7 @@ function Login() {
     }, [blockchain.rockPaperScissorToken]);
 
     useEffect(() => {
+        dispatch(connectWallet());
         dispatch(connect());
     }, [])
 
