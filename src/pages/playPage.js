@@ -58,7 +58,7 @@ function Play() {
         <div className='userCardList'>
           <RandomItems></RandomItems>
         </div>
-        <div className='removePlace' onclick="event.stopPropagation(); alert('you clicked inside the header');">
+        <div className='removePlace'>
           <div className='removeCard'>
             <span>Removed Card</span>
           </div>
