@@ -5,8 +5,10 @@ import UserAvt from '../assets/user-avt.png';
 import SupportIcon from '../assets/supportIcon.png';
 import RandomItems from '../components/randomItems';
 
+
 function Play() {
-  const [countDown, setCountDown] = useState(15)
+  const [countDown, setCountDown] = useState(5);
+  const [render, setRender] = useState(false);
 
   useEffect(() => {
     const timerId = setTimeout(() => {
@@ -14,6 +16,7 @@ function Play() {
     }, 1000);
     if(countDown == 0) {
       clearTimeout(timerId);
+      setRender(true);
     }
   }, [countDown]);
 
@@ -40,9 +43,9 @@ function Play() {
       <div className='layoutSecond'>
         <div className="countDown">
         {
-          countDown > 0?
-          <h1 style={{ fontSize: "50%" }}>COUNTDOWN: <br />{countDown}<br />PICK YOUR CARD</h1>
-          :<></>
+          render == false ?
+          <h1 style={{ fontSize: "50%" }}>ARE YOU READY ? <br />{countDown}</h1>
+          : <h1 style={{ fontSize: "50%" }}>COUNTDOWN:<br />{countDown}<br/>PICK YOUR CARD</h1>
         }
         </div>
       </div>
@@ -56,7 +59,7 @@ function Play() {
           </div>
         </div>
         <div className='userCardList'>
-          <RandomItems></RandomItems>
+          {render ? <RandomItems></RandomItems> : <></>}
         </div>
         <div className='removePlace'>
           <div className='removeCard'>
