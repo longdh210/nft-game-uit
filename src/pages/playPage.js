@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import '../styles/playPage.css';
 import CardBackSide from '../assets/CardBackside4.png';
 import UserAvt from '../assets/user-avt.png';
@@ -7,6 +7,7 @@ import RandomItems from '../components/randomItems';
 
 
 function Play() {
+  // const [firstCountDown, setFirstCountDown] = useState(5);
   const [countDown, setCountDown] = useState(5);
   const [render, setRender] = useState(false);
 
@@ -16,8 +17,11 @@ function Play() {
     }, 1000);
     if(countDown == 0) {
       clearTimeout(timerId);
+      // setCountDown(6);
       setRender(true);
+      // setCountDown(0);
     }
+    return () => clearTimeout(timerId);
   }, [countDown]);
 
   return (
@@ -59,7 +63,7 @@ function Play() {
           </div>
         </div>
         <div className='userCardList'>
-          {render ? <RandomItems></RandomItems> : <></>}
+          {render ? <RandomItems countDown={countDown} onCountDownChange={setCountDown}></RandomItems> : <></>}
         </div>
         <div className='removePlace'>
           <div className='removeCard'>
@@ -75,7 +79,6 @@ function Play() {
           style={{ width: '45px' }} />
       </div>
     </div>
-
   )
 }
 
