@@ -77,10 +77,11 @@ function Play () {
             </div>
           </div>
         </div>
-      </div>
-      <TutorialDialog trigger={buttonPopup} setTrigger={setButtonPopup} >
+        <TutorialDialog trigger={buttonPopup} setTrigger={setButtonPopup} >
         Testing
       </TutorialDialog>
+      </div>
+    
     </div>
 
   )

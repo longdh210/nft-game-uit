@@ -67,6 +67,7 @@
 
 .tutorialLayout1 {
     width: 40%;
+
     justify-items: center;
     justify-content: center;
 }
@@ -90,13 +91,16 @@
     color: #ffffff;
     font-family: Righteous;
     font-style : normal;
-    font-size: 25px;
+    font-size: 32px;
     font-weight: normal;
 
 }
 @media screen and (max-width: 569px) {
     .tutorialText {
       font-size: 14px;
+    }
+    .tutorialLayout1 {
+        display: flex;
     }
   }
   
@@ -105,17 +109,26 @@
     .tutorialText {
       font-size: 17px;
     }
+    .tutorialLayout1 {
+        display: flex;
+    }
   }
 
   @media screen and (min-width: 735px) and (max-width:811px) {
     .tutorialText {
       font-size: 19px;
     }
+    .tutorialLayout1 {
+        display: flex;
+    }
   }
 
   @media screen and (min-width: 811px) and (max-width:850px) {
     .tutorialText {
       font-size: 19px;
+    }
+    .tutorialLayout1 {
+        display: flex;
     }
   }
   @media screen and (min-width: 851px) and (max-width:1239px) {

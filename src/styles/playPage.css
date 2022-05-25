@@ -1,5 +1,5 @@
 .playPage {
-    width: 100vw;
+    width         : 100vw;
     display       : block;
     flex-direction: column;
     height        : 100vh;
@@ -7,7 +7,7 @@
 }
 
 .layoutFirst {
-    height: 33%;
+    height         : 33%;
     justify-content: space-between;
     display        : flex;
     flex-direction : row;
@@ -30,7 +30,7 @@
 }
 
 .enemyCardList {
-    width: max-content;
+    width    : max-content;
     height   : fit-content;
     display  : inline-flex;
     transform: translateY(-20%);
@@ -39,10 +39,11 @@
 .card {
     margin: 0.2604166666666667vw;
     width : 8.229166666666666vw;
-    height:24vh;
+    height: 24vh;
 }
 
-.layoutSecond {height: 33%;
+.layoutSecond {
+    height         : 33%;
     text-align     : center;
     font-family    : Righteous;
     font-style     : normal;
@@ -58,9 +59,9 @@
 }
 
 .layoutThird {
-    height: 33%;
+    height         : 33%;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items    : flex-end;
     display        : flex;
     flex-direction : row;
 }
@@ -76,9 +77,9 @@
     padding         : calc(0.5336179295624333vh + 0.2604166666666667vw);
     flex-direction  : column;
     background-color: #555555;
-    min-height: 40px;
-    height    : 13.447171824973319vh;
-    box-sizing: border-box;
+    min-height      : 40px;
+    height          : 13.447171824973319vh;
+    box-sizing      : border-box;
 }
 
 .user-info {
@@ -106,23 +107,23 @@
 }
 
 .user-card-2 {
-    bottom: 0;
+    bottom          : 0;
     width           : 25%;
     margin          : calc(0.5336179295624333vh + 0.2604166666666667vw);
     display         : flex;
     padding         : calc(0.5336179295624333vh + 0.2604166666666667vw);
     flex-direction  : column;
     background-color: #555555;
-    min-height: 40px;
-    height    : 13.447171824973319vh;
-    box-sizing: border-box;
+    min-height      : 40px;
+    height          : 13.447171824973319vh;
+    box-sizing      : border-box;
 }
 
 
 
 
 .userCardList {
-    width: max-content;
+    width    : max-content;
     height   : fit-content;
     display  : inline-flex;
     transform: translateY(20%);
@@ -130,29 +131,98 @@
 
 .removePlace {
     justify-content: space-between;
-    display: flex;
-    flex-direction: row;
-    width: 25%;
+    display        : flex;
+    flex-direction : row;
+    width          : 25%;
 }
 
 .removeCard {
 
     margin-bottom: 1.0672358591248665vh;
     text-align   : center;
-    width        : 8.229166666666666vw;
-    height       : 26.680896478121664vh;
+    width        : 7.5vw;
+    height       : 25.5vh;
     border       : solid;
     border-color : #fff;
-    border-width: calc(0.21344717182497333vh + 0.10416666666666667vw);
+    border-width : calc(0.21344717182497333vh + 0.10416666666666667vw);
     border-radius: 1.0416666666666667vw;
     font-family  : Righteous;
     font-style   : normal;
     font-weight  : normal;
-    font-size    : 1.5625vw;
+    font-size    : calc(1.6008537886873vh + 0.78125vw);
     color        : #FFFFFF;
 
 
 }
+@media screen and  (max-height:320px) {
+    .removeCard {
+        height: 70px;
+        width : 45px;
+    }
+}
+
+@media screen and (min-height: 374px) and (max-height:414px) {
+    .removeCard {
+        height: 100px;
+        width : 60px;
+    }
+}
+
+@media screen and (min-height: 414px) and (max-height:414px) {
+    .removeCard {
+        height: 100px;
+    }
+}
+
+@media screen and (min-height: 600px) and (max-height:675px) {
+    .removeCard {
+        height: 110px;
+        width : 70px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-height: 675px) and (max-height:767px) {
+    .removeCard {
+        height: 120px;
+    }
+}
+
+@media screen and (min-height: 767px) and (max-height:800px) {
+    .removeCard {
+        height: 150px;
+        width : 95px;
+    }
+}
+
+@media screen and (min-width: 1240px) and (max-width:1400px) {
+    .removeCard {
+        height: 170px;
+        width: 100px;
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 1400px) and (max-width:1590px) {
+    .removeCard {
+        height: 200px;
+        width: 120px;
+        font-size: calc(1.6008537886873vh + 0.78125vw);
+    }
+}
+
+@media screen and (min-width: 1590px) {
+    .removeCard {
+        height: 220px;
+        width : 140px;
+        font-size: calc(1.6008537886873vh + 0.78125vw);
+    }
+
+}
+
+
+
+
 
 .removeCard span {
     display  : block;
@@ -161,12 +231,12 @@
     transform: translateY(-50%);
 }
 
-.supportIcon{
-    max-width: 2.34375vw;
-    height: auto;
-   align-self: flex-end;
-   justify-self: end; 
-   padding: 3%;
+.supportIcon {
+    max-width   : 2.34375vw;
+    height      : auto;
+    align-self  : flex-end;
+    justify-self: end;
+    padding     : 3%;
 
 
 
