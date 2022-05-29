@@ -11,9 +11,33 @@ import TutorialDialog from '../components/tutorial'
 import { useEffect, useState } from 'react';
 import VerusCard from '../components/verusCard'
 import CountDown from '../components/countDown'
+import { useState, useEffect, useCallback } from 'react';
+import '../styles/playPage.css';
+import CardBackSide from '../assets/CardBackside4.png';
+import UserAvt from '../assets/user-avt.png';
+import SupportIcon from '../assets/supportIcon.png';
+import RandomItems from '../components/randomItems';
 
 function Play () {
   const [buttonPopup,setButtonPopup]=useState(false);
+
+  // const [firstCountDown, setFirstCountDown] = useState(5);
+  const [countDown, setCountDown] = useState(5);
+  const [render, setRender] = useState(false);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setCountDown(countDown - 1);
+    }, 1000);
+    if(countDown == 0) {
+      clearTimeout(timerId);
+      // setCountDown(6);
+      setRender(true);
+      // setCountDown(0);
+    }
+    return () => clearTimeout(timerId);
+  }, [countDown]);
+
   return (
 
     <div>
@@ -47,42 +71,40 @@ function Play () {
 
             <VerusCard></VerusCard>
           </div>
-          <div className='layoutThird'>
-            <div className='user-card-2'>
-              <div className='user-info'>
-                <img className='avt' src={UserAvt} alt='user-avt' /> Player B
-              </div>
-              <div className='user-hp'>
-                HP: 5/5
-              </div>
-            </div>
-            <div className='userCardList'>
-              <img className='card' src={TempPcard} alt='Paper card' />
-              <img className='card' src={TempRcard} alt='Rock card' />
-              <img className='card' src={TempScard} alt='Scissor card' />
-            </div>
-            <div className='removePlace'>
-              <div className='removeCard'>
-                <span>Removed Card</span>
-              </div>
-              <img className='supportIcon' onClick={
-                    (e) => {
-                         e.preventDefault();
-                         console.log(1);
-                         setButtonPopup(true);
-                      
-                    }
-                }  src={SupportIcon} alt='support icon' />
-            </div>
+        </div>
+      </div>
+      <div className='layoutSecond'>
+        <div className="countDown">
+        {
+          render == false ?
+          <h1 style={{ fontSize: "50%" }}>ARE YOU READY ? <br />{countDown}</h1>
+          : <h1 style={{ fontSize: "50%" }}>COUNTDOWN:<br />{countDown}<br/>PICK YOUR CARD</h1>
+        }
+        </div>
+      </div>
+      <div className='layoutThird'>
+        <div className='user-card-2' >
+          <div className='user-info'>
+            <img className='avt' src={UserAvt} alt='user-avt' /> Player B
           </div>
         </div>
-        <TutorialDialog trigger={buttonPopup} setTrigger={setButtonPopup} >
-        Testing
-      </TutorialDialog>
+        <div className='userCardList'>
+          {render ? <RandomItems countDown={countDown} onCountDownChange={setCountDown}></RandomItems> : <></>}
+        </div>
+        <div className='removePlace'>
+          <div className='removeCard'>
+            <span>Removed Card</span>
+          </div>
+        </div>
       </div>
-    
+      <div className='supportIcon'>
+        <img
+          className='icon'
+          src={SupportIcon}
+          alt='support icon'
+          style={{ width: '45px' }} />
+      </div>
     </div>
-
   )
 }
 

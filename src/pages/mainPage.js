@@ -12,45 +12,38 @@ import { useNavigate } from 'react-router-dom';
 import { connect, connectWallet } from '../redux/blockchain/blockchainActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from '../redux/data/dataActions'
-import RockPaperScissorToken from "../RockPaperScissor.json";
-import { tokenaddress } from "../config";
-import { ethers } from 'ethers'
-import Web3 from "web3";
 import Dialog from '../components/dialog';
+import { fetchPost, fetchCheck, fetchUpdate } from '../fetchAPI/fetchAPI';
+import ClipLoader from "react-spinners/ClipLoader";
 import video from '../assets/rotate1.mp4'
-
-
-
-
 
 function Login() {
     const dispatch = useDispatch();
     const blockchain = useSelector((state) => state.blockchain);
     const data = useSelector((state) => state.data);
     const navigate = useNavigate();
-    
-    const [buttonPopup,setButtonPopup]=useState(false);
 
+    let [loading, setLoading] = useState(false);
+
+    const [buttonPopup,setButtonPopup]=useState(false);
 
     const playPressed = async (_account) => {
         dispatch(connectWallet());
         dispatch(connect());
+        console.log("account:", _account)
         if(!window.ethereum) {
             setButtonPopup(true)
             console.log("Install metamask");
-           
-        } else if(data.numToken != 15){
-            console.log("balance mint:", data.numToken);
+        } else if(await fetchCheck(_account) == 1){
+            navigate('/menu');
+        } else if(_account != null && await fetchCheck(_account) == 0) {
             mintNFT(_account);
-            console.log("mint");
-            navigate('/play');
-        } else if (data.numToken == 15) {
-            console.log("balance:", data.numToken);
-            navigate('/play');
-        }
+            fetchPost(_account);
+        } else if(_account == null) {}
     }
 
     const mintNFT = (_account) => {
+        setLoading(!loading);
         blockchain.rockPaperScissorToken.methods
             .createRandomCard()
             .send({
@@ -61,7 +54,8 @@ function Login() {
                 console.log(err);
             })
             .then((receipt) => {
-                console.log(receipt);
+                console.log("receipt:", receipt);
+                navigate('/menu')
                 dispatch(fetchData(blockchain.account));
             });
     };
@@ -81,18 +75,28 @@ function Login() {
     useEffect(() => {
         if(blockchain.account != "" && blockchain.rockPaperScissorToken != null) {
             dispatch(fetchData(blockchain.account));
-            console.log("run");
         }
     }, [blockchain.rockPaperScissorToken]);
 
     useEffect(() => {
+        dispatch(connectWallet());
         dispatch(connect());
-        console.log("run connect");
     }, [])
 
-
-    
-
+    if(loading == true)
+        return (
+            <div className="ParentCircleLoader">
+                    <ClipLoader 
+                        loading={loading}
+                        size={150} 
+                        color={"#FFFFFF"}
+                    />
+                    <h2 style={{color: "white"}}>
+                        Waiting for transaction
+                    </h2>
+            </div>
+        )
+        
     return (
         <div>
             <video autoPlay loop src={video} muted >
@@ -123,17 +127,13 @@ function Login() {
             <div className="layout2">
                 <img src={Icon} alt="Icon" className="logo" />
                 <h1 className="header1">NFT Rock Paper Scisscor</h1>
-                <h1 className="header2" onClick={
-                    (e) => {
-                        
-                        
-                   
+                <h1 className="header2" 
+                onClick={
+                    (e) => {                        
                          e.preventDefault();
-                      
-                   
                          playPressed(blockchain.account);
-                        // handleContract(blockchain.account);
                     }
+                    // playPressed
                 }>Play Now</h1>
                 <img src={decorateCorner} alt="corner" className="corner2" />
             </div>
@@ -141,8 +141,7 @@ function Login() {
                 <h3 className='titleText'>Metamask wallet not installed</h3>
                 <br></br>
                 <p className='contentText'>Please install metamask at: <a className='link' href='https://metamask.io/' >https://metamask.io/</a></p>
-                </Dialog>
-          
+            </Dialog>
         </div>
         </div>
     );

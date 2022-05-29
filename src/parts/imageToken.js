@@ -15,6 +15,6 @@ import s_4 from "../assets/nft/scissor/scissor4.png";
 import s_5 from "../assets/nft/scissor/scissor5.png";
 
 export const imageToken = {
-    it: [p_1, p_2, p_3, p_4, p_5, r_1, r_2, r_3, r_4, r_5, s_1, s_2, s_3, s_4, s_5]
+    it: [r_1, r_2, r_3, r_4, r_5, p_1, p_2, p_3, p_4, p_5, s_1, s_2, s_3, s_4, s_5]
 }
 

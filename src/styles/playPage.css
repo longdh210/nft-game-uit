@@ -11,11 +11,7 @@
     justify-content: space-between;
     display        : flex;
     flex-direction : row;
-
-
 }
-
-
 
 .cornerCount {
     width      : 25%;
@@ -60,10 +56,6 @@
     display        : flex;
     flex-direction : row;
 }
-
-
-
-
 
 .user-card {
     width           : 25%;
@@ -113,9 +105,6 @@
     height          : 13.447171824973319vh;
     box-sizing      : border-box;
 }
-
-
-
 
 .userCardList {
     width    : max-content;
@@ -249,4 +238,7 @@
 
 
 
+.countDown {
+    display: flex;
+    flex-direction: column;
 }

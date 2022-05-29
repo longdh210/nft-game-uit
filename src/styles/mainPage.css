@@ -47,7 +47,6 @@
   width     : 11.09375vw;
   height    : auto;
   margin-top: 5.336179295624333vh;
-
 }
 
 .header1 {
@@ -57,7 +56,6 @@
   font-style : normal;
   font-weight: normal;
   font-size  : 3vw;
-
   color      : #FFFFFF;
 }
 
@@ -71,8 +69,6 @@ ul {
   font-style : normal;
   font-weight: normal;
   font-size  :  10.375vw;
-
-
   color      : #FFFFFF;
 }
 
@@ -114,4 +110,13 @@ ul {
 .TempRcard {
   width : 10.229166666666666vw;
   height: 28.240128068303093vh;
+}
+
+.ParentCircleLoader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  text-align: center;
 }
