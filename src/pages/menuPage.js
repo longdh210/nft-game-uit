@@ -32,7 +32,14 @@ function Menu() {
   }
 
   return (
-    <div className='App'>
+    <div>
+        <video
+        autoPlay
+        loop
+        src={video}
+        muted>
+      </video>
+      <div className='App'>
       <div className='layout3'>
         <img src={Icon} alt='Icon' className='logoMain' />
         <div className='missionBox'>
@@ -91,6 +98,7 @@ function Menu() {
       </div>
       <div className='wordCorner'>Your address: {blockchain.account}</div>
       <img src={decorateCorner} alt='corner' className='cornerMenuPage' />
+    </div>
     </div>
   )
 }

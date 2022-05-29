@@ -230,13 +230,14 @@
 }
 
 .supportIcon {
-    max-width   : 2.34375vw;
+    
     height      : auto;
     align-self  : flex-end;
     justify-self: end;
-    padding     : 3%;
+    padding: 5%;
 
 
+}
 
 .countDown {
     display: flex;

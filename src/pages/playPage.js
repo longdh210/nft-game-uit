@@ -8,14 +8,11 @@ import SupportIcon from '../assets/supportIcon.png'
 import video from '../assets/rotate1.mp4'
 import '../styles/generalcss.css'
 import TutorialDialog from '../components/tutorial'
-import { useEffect, useState } from 'react';
 import VerusCard from '../components/verusCard'
 import CountDown from '../components/countDown'
 import { useState, useEffect, useCallback } from 'react';
 import '../styles/playPage.css';
-import CardBackSide from '../assets/CardBackside4.png';
-import UserAvt from '../assets/user-avt.png';
-import SupportIcon from '../assets/supportIcon.png';
+
 import RandomItems from '../components/randomItems';
 
 function Play () {
@@ -68,13 +65,7 @@ function Play () {
             </div>
           </div>
           <div className='layoutSecond'>
-
-            <VerusCard></VerusCard>
-          </div>
-        </div>
-      </div>
-      <div className='layoutSecond'>
-        <div className="countDown">
+        <div className="countDownText">
         {
           render == false ?
           <h1 style={{ fontSize: "50%" }}>ARE YOU READY ? <br />{countDown}</h1>
@@ -87,6 +78,9 @@ function Play () {
           <div className='user-info'>
             <img className='avt' src={UserAvt} alt='user-avt' /> Player B
           </div>
+          <div className='user-hp'>
+                HP: 5/5
+              </div>
         </div>
         <div className='userCardList'>
           {render ? <RandomItems countDown={countDown} onCountDownChange={setCountDown}></RandomItems> : <></>}
@@ -95,16 +89,33 @@ function Play () {
           <div className='removeCard'>
             <span>Removed Card</span>
           </div>
-        </div>
-      </div>
-      <div className='supportIcon'>
+          <div className='supportIcon'>
         <img
           className='icon'
           src={SupportIcon}
           alt='support icon'
-          style={{ width: '45px' }} />
+          style={{ width: '3.5vw' }} 
+          onClick={
+            (e) => {
+                 e.preventDefault();
+                 console.log(1);
+                 setButtonPopup(true);
+              
+            }
+        }/>
       </div>
+        </div>
+       
+     
+      </div>
+     
     </div>
+    <TutorialDialog trigger={buttonPopup} setTrigger={setButtonPopup} >
+        Testing
+      </TutorialDialog>
+        </div>
+      </div>
+     
   )
 }
 
