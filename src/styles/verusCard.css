@@ -1,0 +1,22 @@
+.countDownText {
+    text-align : center;
+    font-family: Righteous;
+    font-style : normal;
+    font-weight: normal;
+    font-size  : calc(60% + 6vmin);
+    color      : #FFFFFF;
+}
+
+
+.layout{
+    width:40vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; 
+}
+
+.columnText{
+    display: flex;
+    flex-direction: column; 
+}

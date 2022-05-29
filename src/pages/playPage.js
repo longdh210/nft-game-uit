@@ -9,6 +9,8 @@ import video from '../assets/rotate1.mp4'
 import '../styles/generalcss.css'
 import TutorialDialog from '../components/tutorial'
 import { useEffect, useState } from 'react';
+import VerusCard from '../components/verusCard'
+import CountDown from '../components/countDown'
 
 function Play () {
   const [buttonPopup,setButtonPopup]=useState(false);
@@ -42,11 +44,8 @@ function Play () {
             </div>
           </div>
           <div className='layoutSecond'>
-            COUNTDOWN:
-            <div>
-              15
-            </div>
-            PICK YOUR CARD
+
+            <VerusCard></VerusCard>
           </div>
           <div className='layoutThird'>
             <div className='user-card-2'>

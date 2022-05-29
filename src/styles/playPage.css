@@ -43,13 +43,8 @@
 }
 
 .layoutSecond {
-    height         : 33%;
-    text-align     : center;
-    font-family    : Righteous;
-    font-style     : normal;
-    font-weight    : normal;
-    font-size      : calc(60% + 6vmin);
-    color          : #FFFFFF;
+    height: 33%;
+
     align-items    : center;
     justify-content: center;
     justify-self   : center;
@@ -140,8 +135,8 @@
 
     margin-bottom: 1.0672358591248665vh;
     text-align   : center;
-    width        : 7.5vw;
-    height       : 25.5vh;
+    height       : 70px;
+    width        : 45px;
     border       : solid;
     border-color : #fff;
     border-width : calc(0.21344717182497333vh + 0.10416666666666667vw);
@@ -149,16 +144,17 @@
     font-family  : Righteous;
     font-style   : normal;
     font-weight  : normal;
-    font-size    : calc(1.6008537886873vh + 0.78125vw);
-    color        : #FFFFFF;
+    font-size: 8px;
+    color: #FFFFFF;
 
 
 }
-@media screen and  (max-height:320px) {
+
+@media screen and (max-height:374px) {
     .removeCard {
         height: 70px;
         width : 45px;
-        
+
     }
 }
 
@@ -169,24 +165,26 @@
     }
 }
 
-@media screen and (min-height: 414px) and (max-height:414px) {
+@media screen and (min-height: 414px) and (max-height:600px) {
     .removeCard {
         height: 100px;
+        width : 60px;
+        font-size: 12px;
     }
 }
 
 @media screen and (min-height: 600px) and (max-height:675px) {
     .removeCard {
-        height: 110px;
-        width : 70px;
+        height   : 110px;
+        width    : 70px;
         font-size: 14px;
     }
 }
 
 @media screen and (min-height: 675px) and (max-height:767px) {
     .removeCard {
-        height: 120px;
-        width : 70px;
+        height   : 120px;
+        width    : 70px;
         font-size: 14px;
     }
 }
@@ -197,34 +195,35 @@
         width : 95px;
     }
 }
-@media screen and (min-width: 850px) and (max-width:1240px) {
+
+@media screen and (min-width: 850px) and (max-width:1240px) and (min-height:675px){
     .removeCard {
-        height: 170px;
-        width: 100px;
+        height   : 170px;
+        width    : 100px;
         font-size: 20px;
     }
 }
 
 @media screen and (min-width: 1240px) and (max-width:1400px) {
     .removeCard {
-        height: 170px;
-        width: 100px;
+        height   : 170px;
+        width    : 100px;
         font-size: 20px;
     }
 }
 
 @media screen and (min-width: 1400px) and (max-width:1590px) {
     .removeCard {
-        height: 200px;
-        width: 120px;
+        height   : 200px;
+        width    : 120px;
         font-size: calc(1.6008537886873vh + 0.78125vw);
     }
 }
 
 @media screen and (min-width: 1590px) {
     .removeCard {
-        height: 220px;
-        width : 140px;
+        height   : 220px;
+        width    : 140px;
         font-size: calc(1.6008537886873vh + 0.78125vw);
     }
 
