@@ -12,13 +12,8 @@ import { useNavigate } from 'react-router-dom';
 import { connect, connectWallet } from '../redux/blockchain/blockchainActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from '../redux/data/dataActions'
-// import RockPaperScissorToken from "../RockPaperScissor.json";
-// import { tokenaddress } from "../config";
-// import { ethers } from 'ethers';
-import Web3 from "web3";
 import Dialog from '../components/dialog';
-import { fetchPost, fetchCheck } from '../fetchAPI/fetchAPI';
-import { css } from "@emotion/react";
+import { fetchPost, fetchCheck, fetchUpdate } from '../fetchAPI/fetchAPI';
 import ClipLoader from "react-spinners/ClipLoader";
 
 function Login() {

@@ -3,6 +3,8 @@ import { game, randomItems} from './logicGame';
 import { TokenRenderer } from './tokenRenderer';
 import { useNavigate } from 'react-router-dom';
 import { rockItems, paperItems, scissorItems } from '../parts/items.js';
+import { fetchUpdate } from '../fetchAPI/fetchAPI';
+import { useSelector } from 'react-redux';
 
 // Copy array of items
 let rockItemsCopyUser = [...rockItems];
@@ -19,6 +21,7 @@ let userWinCount = 0;
 let compWinCount = 0;
 
 const RandomItems = ({ countDown, onCountDownChange }) => {
+    const blockchain = useSelector((state) => state.blockchain);
     const [items, setItems] = useState(firstItems);
     const [userClick, setUserClick] = useState(false);
     const [firstMount, setFirstMount] = useState(true);
@@ -41,7 +44,7 @@ const RandomItems = ({ countDown, onCountDownChange }) => {
         setFirstMount(false);
     }, [countDown]);
 
-    const autoRandomItem = () => {
+    const autoRandomItem = async () => {
         const randomItem = items[Math.floor(Math.random() * 3)];
         let result = game(randomItem, rockItemsCopyComp, paperItemsCopyComp, scissorItemsCopyComp);
         if(result == 1) {
@@ -74,11 +77,12 @@ const RandomItems = ({ countDown, onCountDownChange }) => {
             paperItemsCopyComp = [...paperItems];
             scissorItemsCopyComp = [...scissorItems];
             firstItems = randomItems(rockItemsCopyUser, paperItemsCopyUser, scissorItemsCopyUser);
+            await fetchUpdate(blockchain.account);
             navigate("/menu");
         }
     } 
 
-    const handleClick = (item) => {
+    const handleClick = async (item) => {
         handleCountDownChange();
         console.log("user win count", userWinCount);
         
@@ -110,6 +114,7 @@ const RandomItems = ({ countDown, onCountDownChange }) => {
             paperItemsCopyComp = [...paperItems];
             scissorItemsCopyComp = [...scissorItems];
             firstItems = randomItems(rockItemsCopyUser, paperItemsCopyUser, scissorItemsCopyUser);
+            await fetchUpdate(blockchain.account);
             navigate("/menu");
         }
     }

@@ -9,19 +9,35 @@ import shoppingCartSVG from '../assets/shoppingCart1.svg'
 import infoSVG from '../assets/info.svg'
 import cardsSVG from '../assets/cards.svg'
 import logo2 from '../assets/logo2.png'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchMissions, fetchUserData } from '../fetchAPI/fetchAPI';
 
 function Menu() {
+  const [missions, setMissions] = useState([]);
+  const [userData, setUserData] = useState([{}]);
   const navigate = useNavigate();
   const blockchain = useSelector((state) => state.blockchain);
+
+  useEffect(async () => {
+    setMissions(await fetchMissions());
+    setUserData(await fetchUserData(blockchain.account));
+  }, []);
+
+  const handleClick = () => {
+    console.log("userData", userData[0].matchInDay);
+  }
 
   return (
     <div className='App'>
       <div className='layout3'>
         <img src={Icon} alt='Icon' className='logoMain' />
         <div className='missionBox'>
-          <h1 className='text'>Mission: Play with bot (0/10) -Reward 0.01 BTC Play with bot (0/20) - Reward 0.02 BTC</h1>
+          <h1 className='text'>Missions:</h1>
+          {missions.map((mission, index) => (
+            <h1 key={index} className='text'>{mission.missionName} ({userData[0].matchInDay}/{mission.numMatches}) -Reward {mission.reward} RPS</h1>
+          ))}
         </div>
         <div className='playZone'>
           <ul>
@@ -33,7 +49,7 @@ function Menu() {
             </li>
             <li className='container'>
               <img className='playzoneContainer' src={rankSVG} alt='rank'></img>
-              <div className='playzoneText'>
+              <div className='playzoneText' onClick={handleClick}>
                 Play ranked
               </div>
             </li>
