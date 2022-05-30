@@ -100,7 +100,7 @@ ul {
 
 .menuLogo {
 
-  width       : 23.75vw;
+  width       : auto;
   height      : 46.95837780149413vh;
   justify-self: center;
   align-self  : center;
