@@ -15,8 +15,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMissions, fetchUserData } from "../fetchAPI/fetchAPI";
+import TutorialDialog from "../components/tutorial";
 
 function Menu() {
+    const [buttonPopup, setButtonPopup] = useState(false);
     const [missions, setMissions] = useState([]);
     const [userData, setUserData] = useState([{}]);
     const navigate = useNavigate();
@@ -110,6 +112,11 @@ function Menu() {
                             className="smallContainer"
                             src={infoSVG}
                             alt="info"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                console.log(1);
+                                setButtonPopup(true);
+                            }}
                         ></img>
                     </ul>
                     <img src={logo2} className="menuLogo" alt="logo" />
@@ -132,6 +139,12 @@ function Menu() {
                     alt="corner"
                     className="cornerMenuPage"
                 />
+                <TutorialDialog
+                    trigger={buttonPopup}
+                    setTrigger={setButtonPopup}
+                >
+                    Testing
+                </TutorialDialog>
             </div>
         </div>
     );

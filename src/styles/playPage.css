@@ -34,8 +34,8 @@
 
 .card {
     margin: 0.2604166666666667vw;
-    width : 8.229166666666666vw;
-    height: 24vh;
+    width : auto;
+    height: 28vh;
 }
 
 .layoutSecond {
