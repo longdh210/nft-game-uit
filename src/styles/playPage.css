@@ -32,11 +32,21 @@
     transform: translateY(-20%);
 }
 
+.enemy-card {
+    margin: 0.2604166666666667vw;
+    width : auto;
+    height: 28vh;
+}
+
 .card {
     margin: 0.2604166666666667vw;
     width : auto;
     height: 28vh;
 }
+
+.card:hover {
+    transform: translate(0, -35px);
+  }
 
 .layoutSecond {
     height: 33%;

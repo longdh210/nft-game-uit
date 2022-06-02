@@ -51,9 +51,9 @@ function Play () {
               Card left: 12
             </div>
             <div className='enemyCardList'>
-              <img className='card' src={CardBackSide} alt='Card back side' />
-              <img className='card' src={CardBackSide} alt='Card back side' />
-              <img className='card' src={CardBackSide} alt='Card back side' />
+              <img className='enemy-card' src={CardBackSide} alt='Card back side' />
+              <img className='enemy-card' src={CardBackSide} alt='Card back side' />
+              <img className='enemy-card' src={CardBackSide} alt='Card back side' />
             </div>
             <div className='user-card'>
               <div className='user-info'>
