@@ -50,7 +50,7 @@ function Play () {
             <div className='cornerCount'>
               Card left: 12
             </div>
-            <div className='enemyCardList'>
+            <div className=' enemyCardList swing-in-top-fwd'>
               <img className='enemy-card' src={CardBackSide} alt='Card back side' />
               <img className='enemy-card' src={CardBackSide} alt='Card back side' />
               <img className='enemy-card' src={CardBackSide} alt='Card back side' />
@@ -65,7 +65,7 @@ function Play () {
             </div>
           </div>
           <div className='layoutSecond'>
-        <div className="countDownText">
+        <div className="countDownText rotate-scale-up">
         {
           render == false ?
           <h1 style={{ fontSize: "50%" }}>ARE YOU READY ? <br />{countDown}</h1>

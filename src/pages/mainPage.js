@@ -107,9 +107,9 @@ function Login() {
             <div className="layout1" >
                 <img src={decorateCorner} alt="corner" className="corner1" />
                 <div>
-                    <img src={logo2} alt="Group 13" className="mainLogo" />
-                </div>
-                <ul className="cardList">
+                    <img src={logo2} alt="Group 13" className="mainLogo slide-in-left" />
+                </div> 
+                <ul className="cardList slide-in-left">
                     <li className="cardBehind">
                         <img src={CardBackside} alt="CardBackside" className="CardBackside" />
                     </li>
@@ -125,9 +125,9 @@ function Login() {
                 </ul>
             </div>
             <div className="layout2">
-                <img src={Icon} alt="Icon" className="logo" />
-                <h1 className="header1">NFT Rock Paper Scisscor</h1>
-                <h1 className="header2" 
+                <img src={Icon} alt="Icon" className="logo slide-in-left" />
+                <h1 className="header1 slide-in-left">NFT Rock Paper Scisscor</h1>
+                <h1 className="header2 slide-in-left" 
                 onClick={
                     (e) => {                        
                          e.preventDefault();
