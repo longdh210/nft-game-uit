@@ -41,8 +41,8 @@ function Menu() {
         src={video}
         muted>
       </video>
-      <div className='App'>
-      <div className='layout3'>
+      <div className='App ' >
+      <div className='layout3 slide-in-elliptic-top-fwd'>
         <img src={Icon} alt='Icon' className='logoMain' />
         <div className='missionBox'>
           <h1 className='text'>Missions:</h1>
@@ -73,7 +73,7 @@ function Menu() {
           </ul>
         </div>
       </div>
-      <div className='layout5'>
+      <div className='layout5 slide-in-elliptic-top-fwd'>
 
         <ul className='container2'>
           <h1 className='text'>BTC:~0.999</h1>
