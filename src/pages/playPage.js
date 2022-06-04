@@ -80,7 +80,7 @@ function Play() {
                     <div className="layoutFirst">
                         <div className="cornerCount">Card left: {cardLeft}</div>
                         {!showResult ? (
-                            <div className="enemyCardList">
+                            <div className="enemyCardList swing-in-top-fwd">
                                 <img
                                     className="card"
                                     src={CardBackSide}
@@ -113,7 +113,7 @@ function Play() {
                         </div>
                     </div>
                     <div className="layoutSecond">
-                        <div className="countDownText">
+                        <div className="countDownText rotate-scale-up">
                             {render == false ? (
                                 <h1 style={{ fontSize: "50%" }}>
                                     ARE YOU READY ? <br />
@@ -202,27 +202,6 @@ function Play() {
                     Testing
                 </TutorialDialog>
             </div>
-            <div className=' enemyCardList swing-in-top-fwd'>
-              <img className='enemy-card' src={CardBackSide} alt='Card back side' />
-              <img className='enemy-card' src={CardBackSide} alt='Card back side' />
-              <img className='enemy-card' src={CardBackSide} alt='Card back side' />
-            </div>
-            <div className='user-card'>
-              <div className='user-info'>
-                <img className='avt' src={UserAvt} alt='user-avt' /> Player B
-              </div>
-              <div className='user-hp'>
-                HP: 5/5
-              </div>
-            </div>
-          </div>
-          <div className='layoutSecond'>
-        <div className="countDownText rotate-scale-up">
-        {
-          render == false ?
-          <h1 style={{ fontSize: "50%" }}>ARE YOU READY ? <br />{countDown}</h1>
-          : <h1 style={{ fontSize: "50%" }}>COUNTDOWN:<br />{countDown}<br/>PICK YOUR CARD</h1>
-        }
         </div>
     );
 }

@@ -127,6 +127,7 @@ function Login() {
                 <p className='contentText'>Please install metamask at: <a className='link' href='https://metamask.io/' >https://metamask.io/</a></p>
             </Dialog>
         </div>
+    </div>
     );
 }
 

@@ -110,8 +110,9 @@ function Menu() {
       <TutorialDialog trigger={buttonPopup} setTrigger={setButtonPopup} >
         Testing
       </TutorialDialog>
-    </div>
-    </div>
+  </div>
+  </div>
+ 
   )
 }
-export default Menu
+export default Menu;
