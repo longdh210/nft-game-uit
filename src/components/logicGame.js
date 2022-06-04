@@ -68,69 +68,64 @@ export const game = (
     );
     console.log("userChoice", userChoice);
     console.log("computerChoice", computerChoice);
-    getUserChoice(userChoice);
     switch (userChoice.name + computerChoice.name) {
         case "rockscissor":
         case "scissorpaper":
         case "paperrock":
             console.log("user win");
-            return 1;
+            return [userChoice, computerChoice, 1, "You win"];
         case "rockpaper":
         case "paperscissor":
         case "scissorrock":
             console.log("computer win");
-            return -1;
+            return [userChoice, computerChoice, -1, "Bot win"];
         case "rockrock":
             if (userChoice.level > computerChoice.level) {
                 console.log("user win", userChoice.level, computerChoice.level);
-                return 1;
+                return [userChoice, computerChoice, 1, "You win"];
             } else if (userChoice.level < computerChoice.level) {
                 console.log(
                     "computer win",
                     userChoice.level,
                     computerChoice.level
                 );
-                return -1;
+                return [userChoice, computerChoice, -1, "Bot win"];
             } else if (userChoice.level == computerChoice.level) {
                 console.log("draw", userChoice.level, computerChoice.level);
-                return 0;
+                return [userChoice, computerChoice, 0, "Draw"];
             }
             return;
         case "paperpaper":
             if (userChoice.level > computerChoice.level) {
                 console.log("user win", userChoice.level, computerChoice.level);
-                return 1;
+                return [userChoice, computerChoice, 1, "You win"];
             } else if (userChoice.level < computerChoice.level) {
                 console.log(
                     "computer win",
                     userChoice.level,
                     computerChoice.level
                 );
-                return -1;
+                return [userChoice, computerChoice, -1, "Bot win"];
             } else if (userChoice.level == computerChoice.level) {
                 console.log("draw", userChoice.level, computerChoice.level);
-                return 0;
+                return [userChoice, computerChoice, 0, "Draw"];
             }
             return;
         case "scissorscissor":
             if (userChoice.level > computerChoice.level) {
                 console.log("user win", userChoice.level, computerChoice.level);
-                return 1;
+                return [userChoice, computerChoice, 1, "You win"];
             } else if (userChoice.level < computerChoice.level) {
                 console.log(
                     "computer win",
                     userChoice.level,
                     computerChoice.level
                 );
-                return -1;
+                return [userChoice, computerChoice, -1, "Bot win"];
             } else if (userChoice.level == computerChoice.level) {
                 console.log("draw", userChoice.level, computerChoice.level);
-                return 0;
+                return [userChoice, computerChoice, 0, "Draw"];
             }
             return;
     }
-};
-
-export const getUserChoice = (_userChoice) => {
-    return _userChoice;
 };

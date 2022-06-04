@@ -29,10 +29,6 @@ function Menu() {
         setUserData(await fetchUserData(blockchain.account));
     }, []);
 
-    const handleClick = () => {
-        console.log("userData", userData[0].matchInDay);
-    };
-
     return (
         <div>
             <video autoPlay loop src={video} muted></video>
@@ -72,12 +68,7 @@ function Menu() {
                                     src={rankSVG}
                                     alt="rank"
                                 ></img>
-                                <div
-                                    className="playzoneText"
-                                    onClick={handleClick}
-                                >
-                                    Play ranked
-                                </div>
+                                <div className="playzoneText">Play ranked</div>
                             </li>
                             <li className="container">
                                 <img

@@ -8,7 +8,7 @@ import SupportIcon from "../assets/supportIcon.png";
 import video from "../assets/rotate1.mp4";
 import "../styles/generalcss.css";
 import TutorialDialog from "../components/tutorial";
-import VerusCard from "../components/verusCard";
+import { VerusCard } from "../components/verusCard";
 import CountDown from "../components/countDown";
 import { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
@@ -19,11 +19,15 @@ import RandomItems from "../components/randomItems";
 function Play() {
     const blockchain = useSelector((state) => state.blockchain);
     const [buttonPopup, setButtonPopup] = useState(false);
-    const [numChoice, setNumChoice] = useState(0);
+    // const [numChoice, setNumChoice] = useState(0);
     const [countDown, setCountDown] = useState(5);
-    const [cardLeft, setCardLeft] = useState(15);
+    const [cardLeft, setCardLeft] = useState(12);
     const [render, setRender] = useState(false);
-    const [showResult, setShowResult] = useState(false);
+    const [showResult, setShowResult] = useState("");
+    const [userChoice, setUserChoice] = useState({});
+    const [computerChoice, setComputerChoice] = useState({});
+    const [result, setResult] = useState("");
+    const [showRemovedCard, setShowRemovedCard] = useState(false);
 
     useEffect(() => {
         const timerId = setTimeout(() => {
@@ -31,17 +35,42 @@ function Play() {
         }, 1000);
         if (countDown == 0) {
             clearTimeout(timerId);
-            setNumChoice(numChoice + 1);
-            setCardLeft(cardLeft - 3);
-            console.log("run");
-            if (numChoice == 1) {
-                setShowResult(true);
-            }
+            // setNumChoice(numChoice + 1);
+            // setCardLeft(cardLeft - 3);
+            // console.log("run");
+            // console.log("numChoice", numChoice);
             setRender(true);
-            // setCountDown(0);
+            if (showResult == true) {
+                setShowResult(false);
+            }
         }
         return () => clearTimeout(timerId);
     }, [countDown]);
+
+    const resultToPlayPage = (randomData) => {
+        setShowResult(randomData);
+        setCountDown(5);
+    };
+
+    const getUserChoice = (userChoiceData) => {
+        setUserChoice(userChoiceData);
+        console.log("getUserChoice", userChoiceData);
+    };
+
+    const getComputerChoice = (computerChoiceData) => {
+        setComputerChoice(computerChoiceData);
+    };
+
+    const getResultMatch = (resultMatchData) => {
+        setResult(resultMatchData);
+    };
+
+    const getCardLeft = () => {
+        if (cardLeft > 0) {
+            setCardLeft(cardLeft - 3);
+            setShowRemovedCard(true);
+        }
+    };
 
     return (
         <div>
@@ -50,23 +79,27 @@ function Play() {
                 <div className="playPage">
                     <div className="layoutFirst">
                         <div className="cornerCount">Card left: {cardLeft}</div>
-                        <div className="enemyCardList">
-                            <img
-                                className="card"
-                                src={CardBackSide}
-                                alt="Card back side"
-                            />
-                            <img
-                                className="card"
-                                src={CardBackSide}
-                                alt="Card back side"
-                            />
-                            <img
-                                className="card"
-                                src={CardBackSide}
-                                alt="Card back side"
-                            />
-                        </div>
+                        {!showResult ? (
+                            <div className="enemyCardList">
+                                <img
+                                    className="card"
+                                    src={CardBackSide}
+                                    alt="Card back side"
+                                />
+                                <img
+                                    className="card"
+                                    src={CardBackSide}
+                                    alt="Card back side"
+                                />
+                                <img
+                                    className="card"
+                                    src={CardBackSide}
+                                    alt="Card back side"
+                                />
+                            </div>
+                        ) : (
+                            <></>
+                        )}
                         <div className="user-card">
                             <div className="user-info">
                                 <img
@@ -86,7 +119,7 @@ function Play() {
                                     ARE YOU READY ? <br />
                                     {countDown}
                                 </h1>
-                            ) : (
+                            ) : !showResult ? (
                                 <h1 style={{ fontSize: "50%" }}>
                                     COUNTDOWN:
                                     <br />
@@ -94,7 +127,12 @@ function Play() {
                                     <br />
                                     PICK YOUR CARD
                                 </h1>
-                                // <VerusCard></VerusCard>
+                            ) : (
+                                <VerusCard
+                                    tokenUser={userChoice}
+                                    tokenComputer={computerChoice}
+                                    result={result}
+                                ></VerusCard>
                             )}
                         </div>
                     </div>
@@ -112,22 +150,25 @@ function Play() {
                         </div>
                         <div className="userCardList">
                             {render ? (
-                                showResult ? (
+                                !showResult ? (
                                     <RandomItems
                                         countDown={countDown}
                                         onCountDownChange={setCountDown}
-                                        showResult={showResult}
+                                        resultToPlayPage={resultToPlayPage}
+                                        userChoice={getUserChoice}
+                                        computerChoice={getComputerChoice}
+                                        resultMatch={getResultMatch}
+                                        cardleft={getCardLeft}
                                     ></RandomItems>
                                 ) : (
                                     <></>
                                 )
                             ) : (
-                                // <></>
                                 <></>
                             )}
                         </div>
                         <div className="removePlace">
-                            {numChoice >= 2 ? (
+                            {showRemovedCard ? (
                                 <img
                                     className="card"
                                     src={CardBackSide}
