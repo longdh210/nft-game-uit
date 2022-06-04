@@ -1,21 +1,21 @@
-import { useEffect, useState } from 'react';
-import '../styles/mainPage.css';
-import '../styles/generalcss.css';
-import decorateCorner from '../assets/decorateCorner.png';
-import logo2 from '../assets/logo2.png';
-import Icon from '../assets/Icon.png';
-import CardBackside from '../assets/CardBackside4.png';
-import TempPcard from '../assets/TempPcard.png';
-import TempRcard from '../assets/TempRcard.png';
-import TempScard from '../assets/TempScard.png';
-import { useNavigate } from 'react-router-dom';
-import { connect, connectWallet } from '../redux/blockchain/blockchainActions';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchData } from '../redux/data/dataActions'
-import Dialog from '../components/dialog';
-import { fetchPost, fetchCheck, fetchUpdate } from '../fetchAPI/fetchAPI';
+import { useEffect, useState } from "react";
+import "../styles/mainPage.css";
+import "../styles/generalcss.css";
+import decorateCorner from "../assets/decorateCorner.png";
+import logo2 from "../assets/logo2.png";
+import Icon from "../assets/Icon.png";
+import CardBackside from "../assets/CardBackside4.png";
+import TempPcard from "../assets/TempPcard.png";
+import TempRcard from "../assets/TempRcard.png";
+import TempScard from "../assets/TempScard.png";
+import { useNavigate } from "react-router-dom";
+import { connect, connectWallet } from "../redux/blockchain/blockchainActions";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchData } from "../redux/data/dataActions";
+import Dialog from "../components/dialog";
+import { fetchPost, fetchCheck, fetchUpdate } from "../fetchAPI/fetchAPI";
 import ClipLoader from "react-spinners/ClipLoader";
-import video from '../assets/rotate1.mp4'
+import video from "../assets/rotate1.mp4";
 
 function Login() {
     const dispatch = useDispatch();
@@ -25,22 +25,23 @@ function Login() {
 
     let [loading, setLoading] = useState(false);
 
-    const [buttonPopup,setButtonPopup]=useState(false);
+    const [buttonPopup, setButtonPopup] = useState(false);
 
     const playPressed = async (_account) => {
         dispatch(connectWallet());
         dispatch(connect());
-        console.log("account:", _account)
-        if(!window.ethereum) {
-            setButtonPopup(true)
+        console.log("account:", _account);
+        if (!window.ethereum) {
+            setButtonPopup(true);
             console.log("Install metamask");
-        } else if(await fetchCheck(_account) == 1){
-            navigate('/menu');
-        } else if(_account != null && await fetchCheck(_account) == 0) {
+        } else if ((await fetchCheck(_account)) == 1) {
+            navigate("/menu");
+        } else if (_account != null && (await fetchCheck(_account)) == 0) {
             mintNFT(_account);
             fetchPost(_account);
-        } else if(_account == null) {}
-    }
+        } else if (_account == null) {
+        }
+    };
 
     const mintNFT = (_account) => {
         setLoading(!loading);
@@ -55,25 +56,16 @@ function Login() {
             })
             .then((receipt) => {
                 console.log("receipt:", receipt);
-                navigate('/menu')
+                navigate("/menu");
                 dispatch(fetchData(blockchain.account));
             });
     };
 
-    const checkTokenBalance = async (_account) => {
-        await blockchain.rockPaperScissorToken.methods
-            .getTokenBalance(_account)
-            .call(function(err, res) {
-                if(err) {
-                    console.log("An error occurred", err);
-                    return;
-                }
-                return res;
-            })
-    }
-
     useEffect(() => {
-        if(blockchain.account != "" && blockchain.rockPaperScissorToken != null) {
+        if (
+            blockchain.account != "" &&
+            blockchain.rockPaperScissorToken != null
+        ) {
             dispatch(fetchData(blockchain.account));
         }
     }, [blockchain.rockPaperScissorToken]);
@@ -81,27 +73,19 @@ function Login() {
     useEffect(() => {
         dispatch(connectWallet());
         dispatch(connect());
-    }, [])
+    }, []);
 
-    if(loading == true)
+    if (loading == true)
         return (
             <div className="ParentCircleLoader">
-                    <ClipLoader 
-                        loading={loading}
-                        size={150} 
-                        color={"#FFFFFF"}
-                    />
-                    <h2 style={{color: "white"}}>
-                        Waiting for transaction
-                    </h2>
+                <ClipLoader loading={loading} size={150} color={"#FFFFFF"} />
+                <h2 style={{ color: "white" }}>Waiting for transaction</h2>
             </div>
-        )
-        
+        );
+
     return (
         <div>
-            <video autoPlay loop src={video} muted >
-              
-            </video>
+            <video autoPlay loop src={video} muted></video>
             <div className="App">
             
             <div className="layout1" >
@@ -142,7 +126,6 @@ function Login() {
                 <br></br>
                 <p className='contentText'>Please install metamask at: <a className='link' href='https://metamask.io/' >https://metamask.io/</a></p>
             </Dialog>
-        </div>
         </div>
     );
 }
