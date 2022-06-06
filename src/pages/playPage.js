@@ -1,20 +1,19 @@
 import "../styles/playPage.css";
 import CardBackSide from "../assets/CardBackside4.png";
 import UserAvt from "../assets/user-avt.png";
-import TempPcard from "../assets/TempPcard.png";
-import TempRcard from "../assets/TempRcard.png";
-import TempScard from "../assets/TempScard.png";
 import SupportIcon from "../assets/supportIcon.png";
 import video from "../assets/rotate1.mp4";
 import "../styles/generalcss.css";
 import TutorialDialog from "../components/tutorial";
 import { VerusCard } from "../components/verusCard";
+import FinalResult from "../components/finalResult";
 import CountDown from "../components/countDown";
 import { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import "../styles/playPage.css";
 
 import RandomItems from "../components/randomItems";
+import { useNavigate } from "react-router-dom";
 
 function Play() {
     const blockchain = useSelector((state) => state.blockchain);
@@ -26,8 +25,14 @@ function Play() {
     const [showResult, setShowResult] = useState("");
     const [userChoice, setUserChoice] = useState({});
     const [computerChoice, setComputerChoice] = useState({});
+    const [userWinCount, setUserWinCount] = useState(0);
+    const [computerWinCount, setComputerWinCount] = useState(0);
     const [result, setResult] = useState("");
     const [showRemovedCard, setShowRemovedCard] = useState(false);
+    const [showFinalResult, setShowFinalResult] = useState(false);
+    const [userHP, setUserHP] = useState(5);
+    const [computerHP, setComputerHP] = useState(5);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const timerId = setTimeout(() => {
@@ -35,10 +40,6 @@ function Play() {
         }, 1000);
         if (countDown == 0) {
             clearTimeout(timerId);
-            // setNumChoice(numChoice + 1);
-            // setCardLeft(cardLeft - 3);
-            // console.log("run");
-            // console.log("numChoice", numChoice);
             setRender(true);
             if (showResult == true) {
                 setShowResult(false);
@@ -63,6 +64,14 @@ function Play() {
 
     const getResultMatch = (resultMatchData) => {
         setResult(resultMatchData);
+        if (resultMatchData == "You win") {
+            setComputerHP(computerHP - 1);
+        } else if (resultMatchData == "Bot win") {
+            setUserHP(userHP - 1);
+        } else if (resultMatchData == "Draw") {
+            setUserHP(userHP - 1);
+            setComputerHP(computerHP - 1);
+        }
     };
 
     const getCardLeft = () => {
@@ -72,6 +81,18 @@ function Play() {
         }
     };
 
+    const getFinalResult = () => {
+        setShowFinalResult(true);
+    };
+
+    const getUserWinCount = (userWinCountData) => {
+        setUserWinCount(userWinCountData);
+    };
+
+    const getComputerWinCount = (computerWinCountData) => {
+        setComputerWinCount(computerWinCountData);
+    };
+
     return (
         <div>
             <video autoPlay loop src={video} muted></video>
@@ -79,7 +100,9 @@ function Play() {
                 <div className="playPage">
                     <div className="layoutFirst">
                         <div className="cornerCount">Card left: {cardLeft}</div>
-                        {!showResult ? (
+                        {showFinalResult ? (
+                            <></>
+                        ) : !showResult ? (
                             <div className="enemyCardList swing-in-top-fwd">
                                 <img
                                     className="card"
@@ -109,7 +132,7 @@ function Play() {
                                 />{" "}
                                 Bot
                             </div>
-                            <div className="user-hp">HP: 5/5</div>
+                            <div className="user-hp">HP: {computerHP}/5</div>
                         </div>
                     </div>
                     <div className="layoutSecond">
@@ -119,6 +142,18 @@ function Play() {
                                     ARE YOU READY ? <br />
                                     {countDown}
                                 </h1>
+                            ) : showFinalResult ? (
+                                <FinalResult
+                                    userWinCount={userWinCount}
+                                    computerWinCount={computerWinCount}
+                                    result={
+                                        userWinCount > computerWinCount
+                                            ? "You win"
+                                            : userWinCount == computerWinCount
+                                            ? "Draw"
+                                            : "Bot win"
+                                    }
+                                ></FinalResult>
                             ) : !showResult ? (
                                 <h1 style={{ fontSize: "50%" }}>
                                     COUNTDOWN:
@@ -144,13 +179,20 @@ function Play() {
                                     src={UserAvt}
                                     alt="user-avt"
                                 />
-                                {`${blockchain.account.substring(0, 25)}...`}
+                                {blockchain.account != ""
+                                    ? `${blockchain.account.substring(
+                                          0,
+                                          25
+                                      )}...`
+                                    : "Player"}
                             </div>
-                            <div className="user-hp">HP: 5/5</div>
+                            <div className="user-hp">HP: {userHP}/5</div>
                         </div>
                         <div className="userCardList">
                             {render ? (
-                                !showResult ? (
+                                showFinalResult ? (
+                                    <></>
+                                ) : !showResult ? (
                                     <RandomItems
                                         countDown={countDown}
                                         onCountDownChange={setCountDown}
@@ -159,6 +201,11 @@ function Play() {
                                         computerChoice={getComputerChoice}
                                         resultMatch={getResultMatch}
                                         cardleft={getCardLeft}
+                                        finalResult={getFinalResult}
+                                        getUserWinCount={getUserWinCount}
+                                        getComputerWinCount={
+                                            getComputerWinCount
+                                        }
                                     ></RandomItems>
                                 ) : (
                                     <></>

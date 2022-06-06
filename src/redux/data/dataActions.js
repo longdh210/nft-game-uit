@@ -1,4 +1,7 @@
-import store from "../store"
+import Web3 from "web3";
+import store from "../store";
+
+let web3 = new Web3(window.ethereum);
 
 const fetchDataRequest = () => {
     return {
@@ -32,16 +35,18 @@ export const fetchData = (account) => {
                 .getState()
                 .blockchain.rockPaperScissorToken.methods.getOwnerCards(account)
                 .call();
-            let numToken = await store
+            let balanceTokens = await store
                 .getState()
-                .blockchain.rockPaperScissorToken.methods.getTokenBalance(account)
+                .blockchain.rpsToken.methods.balanceOf(account)
                 .call();
-                
+
+            balanceTokens = web3.utils.fromWei(balanceTokens, "ether");
+
             dispatch(
                 fetchDataSuccess({
                     allTokens,
                     allOwnerTokens,
-                    numToken
+                    balanceTokens,
                 })
             );
         } catch (err) {

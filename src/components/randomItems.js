@@ -34,6 +34,9 @@ const RandomItems = ({
     computerChoice,
     resultMatch,
     cardleft,
+    finalResult,
+    getUserWinCount,
+    getComputerWinCount,
 }) => {
     const blockchain = useSelector((state) => state.blockchain);
     const [userClick, setUserClick] = useState(false);
@@ -110,19 +113,13 @@ const RandomItems = ({
             items = tempItems;
             // console.log("items set", items);
         } else {
-            // if (userWinCount > compWinCount) {
-            //     alert("User win");
-            // } else if (compWinCount > userWinCount) {
-            //     alert("Computer win");
-            // } else {
-            //     alert("Draw");
-            // }
-            // setFinal(true);
             handleCountDownChange5s();
             resultToPlayPage(showResult);
             console.log("Final:");
             console.log("user", userWinCount);
             console.log("comp", compWinCount);
+            getUserWinCount(userWinCount);
+            getComputerWinCount(compWinCount);
             // Reset variables
             userWinCount = 0;
             compWinCount = 0;
@@ -138,14 +135,18 @@ const RandomItems = ({
                 scissorItemsCopyUser
             );
             await fetchUpdate(blockchain.account);
-            alertLog(userWinCount, compWinCount);
-            navigate("/menu");
+            // alertLog(userWinCount, compWinCount);
+            finalResult();
+            // handleCountDownChange5s();
+            // navigate("/menu");
         }
     };
 
     const handleClick = (item) => {
         getUserClick(item);
         handleCountDownChange5s();
+        console.log("run card left -3");
+        cardleft();
         resultToPlayPage(showResult);
     };
 
@@ -174,13 +175,13 @@ const RandomItems = ({
             // setItems(tempItems);
             items = tempItems;
         } else {
-            if (userWinCount > compWinCount) {
-                alert("User win");
-            } else if (compWinCount > userWinCount) {
-                alert("Computer win");
-            } else {
-                alert("Draw");
-            }
+            handleCountDownChange5s();
+            resultToPlayPage(showResult);
+            console.log("Final:");
+            console.log("user", userWinCount);
+            console.log("comp", compWinCount);
+            getUserWinCount(userWinCount);
+            getComputerWinCount(compWinCount);
             // Reset variables
             userWinCount = 0;
             compWinCount = 0;
@@ -196,7 +197,10 @@ const RandomItems = ({
                 scissorItemsCopyUser
             );
             await fetchUpdate(blockchain.account);
-            navigate("/menu");
+            // alertLog(userWinCount, compWinCount);
+            finalResult();
+            // handleCountDownChange5s();
+            // navigate("/menu");
         }
     };
 

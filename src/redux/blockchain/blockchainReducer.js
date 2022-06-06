@@ -2,12 +2,13 @@ const initialState = {
     loading: false,
     account: null,
     rockPaperScissorToken: null,
+    rpsToken: null,
     web3: null,
     errorMsg: "",
 };
 
 const blockchainReducer = (state = initialState, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case "CONNECTION_REQUEST":
             return {
                 ...initialState,
@@ -19,6 +20,7 @@ const blockchainReducer = (state = initialState, action) => {
                 loading: false,
                 account: action.payload.account,
                 rockPaperScissorToken: action.payload.rockPaperScissorToken,
+                rpsToken: action.payload.rpsToken,
                 web3: action.payload.web3,
             };
         case "CONNECTION_FAILED":
@@ -38,4 +40,3 @@ const blockchainReducer = (state = initialState, action) => {
 };
 
 export default blockchainReducer;
-
