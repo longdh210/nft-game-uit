@@ -28,23 +28,24 @@ function Login() {
     const [buttonPopup, setButtonPopup] = useState(false);
 
     const playPressed = async (_account) => {
+        setLoading(!loading);
         dispatch(connectWallet());
         dispatch(connect());
         console.log("account:", _account);
         if (!window.ethereum) {
             setButtonPopup(true);
             console.log("Install metamask");
+            setLoading(!loading);
         } else if ((await fetchCheck(_account)) == 1) {
+            setLoading(!loading);
             navigate("/menu");
         } else if (_account != null && (await fetchCheck(_account)) == 0) {
             mintNFT(_account);
-            fetchPost(_account);
         } else if (_account == null) {
         }
     };
 
     const mintNFT = (_account) => {
-        setLoading(!loading);
         blockchain.rockPaperScissorToken.methods
             .createRandomCard()
             .send({
@@ -56,6 +57,8 @@ function Login() {
             })
             .then((receipt) => {
                 console.log("receipt:", receipt);
+                fetchPost(_account);
+                setLoading(!loading);
                 navigate("/menu");
                 dispatch(fetchData(blockchain.account));
             });
@@ -70,10 +73,18 @@ function Login() {
         }
     }, [blockchain.rockPaperScissorToken]);
 
-    useEffect(() => {
-        dispatch(connectWallet());
-        dispatch(connect());
+    useEffect(async () => {
+        setLoading(true);
+        dispatch(await connectWallet());
+        dispatch(await connect());
+        checkFetchAddress();
     }, []);
+
+    const checkFetchAddress = () => {
+        if (blockchain.account != "") {
+            setLoading(false);
+        }
+    };
 
     if (loading == true)
         return (
@@ -87,47 +98,85 @@ function Login() {
         <div>
             <video autoPlay loop src={video} muted></video>
             <div className="App">
-            
-            <div className="layout1" >
-                <img src={decorateCorner} alt="corner" className="corner1" />
-                <div>
-                    <img src={logo2} alt="Group 13" className="mainLogo slide-in-left" />
-                </div> 
-                <ul className="cardList slide-in-left">
-                    <li className="cardBehind">
-                        <img src={CardBackside} alt="CardBackside" className="CardBackside" />
-                    </li>
-                    <li>
-                        <img src={TempScard} alt="TempScard" className="TempScard" />
-                    </li>
-                    <li>
-                        <img src={TempPcard} alt="TempPcard" className="TempPcard" />
-                    </li>
-                    <li>
-                        <img src={TempRcard} alt="TempRcard" className="TempRcard" />
-                    </li>
-                </ul>
+                <div className="layout1">
+                    <img
+                        src={decorateCorner}
+                        alt="corner"
+                        className="corner1"
+                    />
+                    <div>
+                        <img
+                            src={logo2}
+                            alt="Group 13"
+                            className="mainLogo slide-in-left"
+                        />
+                    </div>
+                    <ul className="cardList slide-in-left">
+                        <li className="cardBehind">
+                            <img
+                                src={CardBackside}
+                                alt="CardBackside"
+                                className="CardBackside"
+                            />
+                        </li>
+                        <li>
+                            <img
+                                src={TempScard}
+                                alt="TempScard"
+                                className="TempScard"
+                            />
+                        </li>
+                        <li>
+                            <img
+                                src={TempPcard}
+                                alt="TempPcard"
+                                className="TempPcard"
+                            />
+                        </li>
+                        <li>
+                            <img
+                                src={TempRcard}
+                                alt="TempRcard"
+                                className="TempRcard"
+                            />
+                        </li>
+                    </ul>
+                </div>
+                <div className="layout2">
+                    <img src={Icon} alt="Icon" className="logo slide-in-left" />
+                    <h1 className="header1 slide-in-left">
+                        NFT Rock Paper Scisscor
+                    </h1>
+                    <h1
+                        className="header2 slide-in-left"
+                        onClick={
+                            (e) => {
+                                e.preventDefault();
+                                playPressed(blockchain.account);
+                            }
+                            // playPressed
+                        }
+                    >
+                        Play Now
+                    </h1>
+                    <img
+                        src={decorateCorner}
+                        alt="corner"
+                        className="corner2"
+                    />
+                </div>
+                <Dialog trigger={buttonPopup} setTrigger={setButtonPopup}>
+                    <h3 className="titleText">Metamask wallet not installed</h3>
+                    <br></br>
+                    <p className="contentText">
+                        Please install metamask at:{" "}
+                        <a className="link" href="https://metamask.io/">
+                            https://metamask.io/
+                        </a>
+                    </p>
+                </Dialog>
             </div>
-            <div className="layout2">
-                <img src={Icon} alt="Icon" className="logo slide-in-left" />
-                <h1 className="header1 slide-in-left">NFT Rock Paper Scisscor</h1>
-                <h1 className="header2 slide-in-left" 
-                onClick={
-                    (e) => {                        
-                         e.preventDefault();
-                         playPressed(blockchain.account);
-                    }
-                    // playPressed
-                }>Play Now</h1>
-                <img src={decorateCorner} alt="corner" className="corner2" />
-            </div>
-            <Dialog trigger={buttonPopup} setTrigger={setButtonPopup}>
-                <h3 className='titleText'>Metamask wallet not installed</h3>
-                <br></br>
-                <p className='contentText'>Please install metamask at: <a className='link' href='https://metamask.io/' >https://metamask.io/</a></p>
-            </Dialog>
         </div>
-    </div>
     );
 }
 
