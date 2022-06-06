@@ -38,6 +38,12 @@
     height: 28vh;
 }
 
+.enemyCard {
+    margin: 0.2604166666666667vw;
+    width : auto;
+    height: 28vh;
+}
+
 .card {
     margin: 0.2604166666666667vw;
     width : auto;
@@ -47,6 +53,7 @@
 .card:hover {
     transform: translate(0, -35px);
   }
+
 
 .layoutSecond {
     height: 33%;

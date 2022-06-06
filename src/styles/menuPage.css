@@ -99,7 +99,7 @@ ul {
 
 
 .menuLogo {
-
+  padding-top: 10%;
   width       : auto;
   height      : 46.95837780149413vh;
   justify-self: center;
@@ -160,6 +160,7 @@ ul {
 }
 
 .progressBarBox {
+  display: none;
   align-self: center;
   width     : 38vw;
 }

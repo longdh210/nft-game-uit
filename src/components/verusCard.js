@@ -145,16 +145,16 @@ export const VerusCard = ({
             <img
                 src={imageToken.it[userRarity]}
                 alt="CardBackside"
-                className="CardBackside"
+                className="CardBackside slide-in-left"
             />
             <div className="columnText">
-                <div className="countDownText"> VS</div>
-                <div className="countDownText">{result}</div>
+                <div className="countDownText slide-in-top"> VS</div>
+                <div className="countDownText slide-in-bottom">{result}</div>
             </div>
             <img
                 src={imageToken.it[computerRarity]}
                 alt="CardBackside"
-                className="CardBackside"
+                className="CardBackside slide-in-right"
             />
         </div>
     );

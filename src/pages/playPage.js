@@ -105,17 +105,17 @@ function Play() {
                         ) : !showResult ? (
                             <div className="enemyCardList swing-in-top-fwd">
                                 <img
-                                    className="card"
+                                    className="enemyCard"
                                     src={CardBackSide}
                                     alt="Card back side"
                                 />
                                 <img
-                                    className="card"
+                                    className="enemyCard"
                                     src={CardBackSide}
                                     alt="Card back side"
                                 />
                                 <img
-                                    className="card"
+                                    className="enemyCard"
                                     src={CardBackSide}
                                     alt="Card back side"
                                 />
@@ -193,7 +193,7 @@ function Play() {
                                 showFinalResult ? (
                                     <></>
                                 ) : !showResult ? (
-                                    <RandomItems
+                                    <RandomItems 
                                         countDown={countDown}
                                         onCountDownChange={setCountDown}
                                         resultToPlayPage={resultToPlayPage}
@@ -217,7 +217,7 @@ function Play() {
                         <div className="removePlace">
                             {showRemovedCard ? (
                                 <img
-                                    className="card"
+                                    className="enemyCard"
                                     src={CardBackSide}
                                     alt="Card back side"
                                 />

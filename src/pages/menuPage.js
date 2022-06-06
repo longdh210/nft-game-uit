@@ -122,16 +122,19 @@ function Menu() {
                             className="smallContainer"
                             src={shoppingCartSVG}
                             alt="shoppingcart"
+                            onClick={handleClick}
                         ></img>
                         <img
                             className="smallContainer"
                             src={cardsSVG}
                             alt="cards"
+                            onClick={handleClick}
                         ></img>
                         <img
                             className="smallContainer"
                             src={profileSVG}
                             alt="profile"
+                            onClick={handleClick}
                         ></img>
                         <img
                             className="smallContainer"
