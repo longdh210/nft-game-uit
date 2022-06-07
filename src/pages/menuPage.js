@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMissions, fetchUserData } from "../fetchAPI/fetchAPI";
 import { fetchData } from "../redux/data/dataActions";
+import { connect, connectWallet } from "../redux/blockchain/blockchainActions";
 import TutorialDialog from "../components/tutorial";
 import ClipLoader from "react-spinners/ClipLoader";
 
@@ -25,14 +26,31 @@ function Menu() {
     const data = useSelector((state) => state.data);
     const dispatch = useDispatch();
     const [missions, setMissions] = useState([]);
-    const [userData, setUserData] = useState([{}]);
+    const [userData, setUserData] = useState([{ matchInDay: 0 }]);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    console.log("data", data);
+    // console.log("data", data);
+
+    const checkBlockchainAccount = (_account) => {
+        if (_account == null) {
+            setLoading(true);
+            dispatch(connectWallet());
+            dispatch(connect());
+            console.log("run");
+            console.log("account run:", _account);
+        }
+        if (_account != null) {
+            setLoading(false);
+            console.log("run set false");
+        }
+    };
 
     useEffect(async () => {
         setLoading(true);
+        dispatch(connectWallet());
+        dispatch(connect());
+        checkBlockchainAccount(blockchain.account);
         setMissions(await fetchMissions());
         setUserData(await fetchUserData(blockchain.account));
         // dispatch(fetchData(blockchain.account));
@@ -40,7 +58,7 @@ function Menu() {
     }, []);
 
     useEffect(() => {
-        if (blockchain.account != "" && blockchain.rpsToken != null) {
+        if (blockchain.account != null && blockchain.rpsToken != null) {
             dispatch(fetchData(blockchain.account));
         }
     }, [blockchain.rpsToken]);
@@ -48,6 +66,8 @@ function Menu() {
     const checkData = () => {
         if (missions != undefined && userData != undefined) {
             setLoading(false);
+            console.log("missions:", missions);
+            console.log("userData:", userData);
         }
     };
 

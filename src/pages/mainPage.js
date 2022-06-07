@@ -29,8 +29,8 @@ function Login() {
 
     const playPressed = async (_account) => {
         setLoading(!loading);
-        dispatch(connectWallet());
-        dispatch(connect());
+        // dispatch(connectWallet());
+        // dispatch(connect());
         console.log("account:", _account);
         if (!window.ethereum) {
             setButtonPopup(true);
@@ -73,15 +73,24 @@ function Login() {
         }
     }, [blockchain.rockPaperScissorToken]);
 
-    useEffect(async () => {
+    useEffect(() => {
         setLoading(true);
-        dispatch(await connectWallet());
-        dispatch(await connect());
+        dispatch(connect);
+        checkFetchAddress();
+    }, [blockchain.account == null]);
+
+    useEffect(() => {
+        setLoading(true);
+        dispatch(connectWallet());
+        dispatch(connect());
         checkFetchAddress();
     }, []);
 
     const checkFetchAddress = () => {
-        if (blockchain.account != "") {
+        if (blockchain.account != null) {
+            setLoading(false);
+        } else {
+            dispatch(connect());
             setLoading(false);
         }
     };
