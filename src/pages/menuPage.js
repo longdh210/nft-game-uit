@@ -50,9 +50,18 @@ function Menu() {
         setLoading(true);
         dispatch(connectWallet());
         dispatch(connect());
+        console.log("account:", blockchain.account);
         checkBlockchainAccount(blockchain.account);
         setMissions(await fetchMissions());
-        setUserData(await fetchUserData(blockchain.account));
+        if (blockchain.account != null) {
+            setUserData(await fetchUserData(blockchain.account));
+        } else {
+            const accounts = await window.ethereum.request({
+                method: "eth_accounts",
+            });
+            setUserData(await fetchUserData(accounts[0]));
+        }
+        checkFetchAddress();
         // dispatch(fetchData(blockchain.account));
         checkData();
     }, []);
@@ -63,11 +72,26 @@ function Menu() {
         }
     }, [blockchain.rpsToken]);
 
+    useEffect(async () => {
+        setLoading(true);
+        dispatch(connect);
+        checkFetchAddress();
+    }, [blockchain.account == null]);
+
     const checkData = () => {
         if (missions != undefined && userData != undefined) {
             setLoading(false);
             console.log("missions:", missions);
             console.log("userData:", userData);
+        }
+    };
+
+    const checkFetchAddress = () => {
+        if (blockchain.account != null) {
+            setLoading(false);
+        } else {
+            dispatch(connect());
+            setLoading(false);
         }
     };
 

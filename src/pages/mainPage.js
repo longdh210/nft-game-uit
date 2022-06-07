@@ -31,6 +31,12 @@ function Login() {
         setLoading(!loading);
         // dispatch(connectWallet());
         // dispatch(connect());
+        if (_account == null) {
+            const accounts = await window.ethereum.request({
+                method: "eth_accounts",
+            });
+            _account = accounts[0];
+        }
         console.log("account:", _account);
         if (!window.ethereum) {
             setButtonPopup(true);
