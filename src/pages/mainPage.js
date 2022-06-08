@@ -26,28 +26,33 @@ function Login() {
     let [loading, setLoading] = useState(false);
 
     const [buttonPopup, setButtonPopup] = useState(false);
+    const [buttonPopup2, setButtonPopup2] = useState(false);
 
     const playPressed = async (_account) => {
-        setLoading(!loading);
-        // dispatch(connectWallet());
-        // dispatch(connect());
-        if (_account == null) {
-            const accounts = await window.ethereum.request({
-                method: "eth_accounts",
-            });
-            _account = accounts[0];
-        }
-        console.log("account:", _account);
-        if (!window.ethereum) {
-            setButtonPopup(true);
-            console.log("Install metamask");
+        if (_account == undefined) {
+            setButtonPopup2(true);
+        } else {
             setLoading(!loading);
-        } else if ((await fetchCheck(_account)) == 1) {
-            setLoading(!loading);
-            navigate("/menu");
-        } else if (_account != null && (await fetchCheck(_account)) == 0) {
-            mintNFT(_account);
-        } else if (_account == null) {
+            // dispatch(connectWallet());
+            // dispatch(connect());
+            if (_account == null) {
+                const accounts = await window.ethereum.request({
+                    method: "eth_accounts",
+                });
+                _account = accounts[0];
+            }
+            console.log("account:", _account);
+            if (!window.ethereum) {
+                setButtonPopup(true);
+                console.log("Install metamask");
+                setLoading(!loading);
+            } else if ((await fetchCheck(_account)) == 1) {
+                setLoading(!loading);
+                navigate("/menu");
+            } else if (_account != null && (await fetchCheck(_account)) == 0) {
+                mintNFT(_account);
+            } else if (_account == null) {
+            }
         }
     };
 
@@ -189,6 +194,11 @@ function Login() {
                             https://metamask.io/
                         </a>
                     </p>
+                </Dialog>
+                <Dialog trigger={buttonPopup2} setTrigger={setButtonPopup2}>
+                    <h3 className="titleText">
+                        You are not logged in Metamask
+                    </h3>
                 </Dialog>
             </div>
         </div>
