@@ -6,7 +6,7 @@ import rankSVG from "../assets/rank.svg";
 import historySVG from "../assets/history.svg";
 import profileSVG from "../assets/profile.svg";
 import shoppingCartSVG from "../assets/shoppingCart1.svg";
-import infoSVG from "../assets/info.svg";
+import AlertDialog from "../components/UIPopup";
 import cardsSVG from "../assets/cards.svg";
 import logo2 from "../assets/logo2.png";
 import video from "../assets/rotate1.mp4";
@@ -19,6 +19,11 @@ import { fetchData } from "../redux/data/dataActions";
 import { connect, connectWallet } from "../redux/blockchain/blockchainActions";
 import TutorialDialog from "../components/tutorial";
 import ClipLoader from "react-spinners/ClipLoader";
+import { Button } from "@mui/material";
+
+import { ThemeProvider } from "@mui/styles";
+import {createTheme} from '@mui/material';
+
 
 function Menu() {
     const [buttonPopup, setButtonPopup] = useState(false);
@@ -29,7 +34,7 @@ function Menu() {
     const [userData, setUserData] = useState([{ matchInDay: 0 }]);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-
+    const theme= createTheme({});
     // console.log("data", data);
 
     const checkBlockchainAccount = (_account) => {
@@ -108,7 +113,8 @@ function Menu() {
         );
 
     return (
-        <div>
+       <ThemeProvider theme={theme}>
+            <div>
             <video autoPlay loop src={video} muted></video>
             <div className="App ">
                 <div className="layout3 slide-in-elliptic-top-fwd">
@@ -180,7 +186,7 @@ function Menu() {
                             alt="profile"
                             onClick={handleClick}
                         ></img>
-                        <img
+                        {/* <img
                             className="smallContainer"
                             src={infoSVG}
                             alt="info"
@@ -189,7 +195,10 @@ function Menu() {
                                 console.log(1);
                                 setButtonPopup(true);
                             }}
-                        ></img>
+                        ></img> */}
+                        <AlertDialog/>
+                        
+                        
                     </ul>
                     <img src={logo2} className="menuLogo" alt="logo" />
 
@@ -211,14 +220,16 @@ function Menu() {
                     alt="corner"
                     className="cornerMenuPage"
                 />
-                <TutorialDialog
+                {/* <TutorialDialog
                     trigger={buttonPopup}
                     setTrigger={setButtonPopup}
                 >
                     Testing
                 </TutorialDialog>
+                 */}
             </div>
         </div>
+       </ThemeProvider>
     );
 }
 export default Menu;
