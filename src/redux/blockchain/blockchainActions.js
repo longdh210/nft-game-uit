@@ -66,7 +66,7 @@ export const connect = () => {
                     );
                     window.ethereum.on("accountsChanged", (accounts) => {
                         dispatch(updateAccount(accounts[0]));
-                        window.location.replace("http://localhost:3000/");
+                        window.location.reload();
                         // window.location.reload(false);
                         console.log("run in action");
                     });

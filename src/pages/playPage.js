@@ -142,7 +142,21 @@ function Play() {
                                     ARE YOU READY ? <br />
                                     {countDown}
                                 </h1>
-                            ) : showFinalResult ? (
+                            ) : !showResult && showFinalResult == false ? (
+                                <h1 style={{ fontSize: "50%" }}>
+                                    COUNTDOWN:
+                                    <br />
+                                    {countDown}
+                                    <br />
+                                    PICK YOUR CARD
+                                </h1>
+                            ) : showResult ? (
+                                <VerusCard
+                                    tokenUser={userChoice}
+                                    tokenComputer={computerChoice}
+                                    result={result}
+                                ></VerusCard>
+                            ) : !showResult && showFinalResult ? (
                                 <FinalResult
                                     userWinCount={userWinCount}
                                     computerWinCount={computerWinCount}
@@ -154,20 +168,8 @@ function Play() {
                                             : "Bot win"
                                     }
                                 ></FinalResult>
-                            ) : !showResult ? (
-                                <h1 style={{ fontSize: "50%" }}>
-                                    COUNTDOWN:
-                                    <br />
-                                    {countDown}
-                                    <br />
-                                    PICK YOUR CARD
-                                </h1>
                             ) : (
-                                <VerusCard
-                                    tokenUser={userChoice}
-                                    tokenComputer={computerChoice}
-                                    result={result}
-                                ></VerusCard>
+                                <></>
                             )}
                         </div>
                     </div>
@@ -193,7 +195,7 @@ function Play() {
                                 showFinalResult ? (
                                     <></>
                                 ) : !showResult ? (
-                                    <RandomItems 
+                                    <RandomItems
                                         countDown={countDown}
                                         onCountDownChange={setCountDown}
                                         resultToPlayPage={resultToPlayPage}
