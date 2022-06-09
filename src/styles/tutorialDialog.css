@@ -114,10 +114,17 @@
 
 .noteText {
     align-self: center;
-    color      : #ffffff;
+    background: -webkit-linear-gradient( left, #FF5C87, #FFD269,#429136,#27E1CE);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-family: Righteous;
     font-style : normal;
-    font-size: calc(1vh + 1vw);
+    font-size: calc(0.65vh + 0.65vw);
     font-weight: normal;
 
+
+  
+  
 }
+
+

@@ -197,8 +197,9 @@ function Menu() {
                         
                         
                     </ul>
+                    
                     <img src={logo2} className="menuLogo" alt="logo" />
-                    <div className='noteText' style={{'color': '#FFFFF'}}>
+                    <div className='noteText'>
                NOTE: It take a few minute to get reward after finish a misson.
               </div>
                     <div className="progressBarBox">
