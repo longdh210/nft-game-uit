@@ -16,6 +16,8 @@ import Dialog from "../components/dialog";
 import { fetchPost, fetchCheck, fetchUpdate } from "../fetchAPI/fetchAPI";
 import ClipLoader from "react-spinners/ClipLoader";
 import video from "../assets/rotate1.mp4";
+import metamask from "../assets/metamask.gif"
+import metamask2 from "../assets/metamask2.gif"
 
 function Login() {
     const dispatch = useDispatch();
@@ -182,10 +184,16 @@ function Login() {
                     />
                 </div>
                 <Dialog trigger={buttonPopup} setTrigger={setButtonPopup}>
+                <img
+                            src={metamask}
+                            alt="Group 13"
+                            className="metamaskLogo "
+                        />
                     <h3 className="titleText" style={{ color: "#429136" }}>
-                        Metamask is not install{" "}
+                        Metamask is not install{" "}  
                     </h3>
-                    <br></br>
+                
+               
                     <p className="contentText">
                         Please install metamask at:{" "}
                         <a className="link" href="https://metamask.io/">
@@ -194,10 +202,15 @@ function Login() {
                     </p>
                 </Dialog>
                 <Dialog trigger={buttonPopup2} setTrigger={setButtonPopup2}>
+                <img
+                            src={metamask2}
+                            alt="Group 13"
+                            className="metamaskLogo "
+                        />
                     <h3 className="titleText" style={{ color: "#FF5C87" }}>
                         You are not logged in Metamask
                     </h3>
-                    <br></br>
+                   
                     <p className="contentText">
                         For more info please look at:{" "}
                         <a className="link" href="https://metamask.io/">

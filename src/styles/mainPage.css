@@ -153,3 +153,10 @@ ul {
     }
   }
   
+
+  .metamaskLogo {
+    align-self : center;
+    display    : block;
+      width      : 105px;
+      height     : auto;
+  }
