@@ -10,7 +10,7 @@ import '../styles/tutorialDialog.css'
 import Tutorial from '../assets/tutorial1.png'
 import { ThemeContext } from '@emotion/react'
 import { ThemeProvider } from '@mui/styles'
-import { createTheme } from '@mui/system'
+import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 
 export default function AlertDialog () {
   const [open, setOpen] = React.useState(false)
@@ -23,7 +23,11 @@ export default function AlertDialog () {
     setOpen(false)
   }
 
+  let theme = createTheme({  typography: {
+    
 
+  }})
+  theme = responsiveFontSizes(theme)
   return (
     <ThemeProvider theme={theme}>
       <div>

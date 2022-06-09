@@ -17,10 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchMissions, fetchUserData } from "../fetchAPI/fetchAPI";
 import { fetchData } from "../redux/data/dataActions";
 import { connect, connectWallet } from "../redux/blockchain/blockchainActions";
-import TutorialDialog from "../components/tutorial";
 import ClipLoader from "react-spinners/ClipLoader";
-import { Button } from "@mui/material";
-
 import { ThemeProvider } from "@mui/styles";
 import {createTheme} from '@mui/material';
 

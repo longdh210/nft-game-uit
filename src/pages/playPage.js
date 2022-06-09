@@ -11,13 +11,13 @@ import CountDown from "../components/countDown";
 import { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import "../styles/playPage.css";
-
+import AlertDialog from "../components/UIPopup";
 import RandomItems from "../components/randomItems";
 import { useNavigate } from "react-router-dom";
 
 function Play() {
     const blockchain = useSelector((state) => state.blockchain);
-    const [buttonPopup, setButtonPopup] = useState(false);
+
     // const [numChoice, setNumChoice] = useState(0);
     const [countDown, setCountDown] = useState(5);
     const [cardLeft, setCardLeft] = useState(12);
@@ -229,7 +229,7 @@ function Play() {
                                 </div>
                             )}
                             <div className="supportIcon">
-                                <img
+                                {/* <img
                                     className="icon"
                                     src={SupportIcon}
                                     alt="support icon"
@@ -239,17 +239,13 @@ function Play() {
                                         console.log(1);
                                         setButtonPopup(true);
                                     }}
-                                />
+                                /> */}
+                                <AlertDialog/>
                             </div>
                         </div>
                     </div>
                 </div>
-                <TutorialDialog
-                    trigger={buttonPopup}
-                    setTrigger={setButtonPopup}
-                >
-                    Testing
-                </TutorialDialog>
+            
             </div>
         </div>
     );
