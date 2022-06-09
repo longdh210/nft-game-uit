@@ -29,23 +29,19 @@ function Login() {
     const [buttonPopup2, setButtonPopup2] = useState(false);
 
     const playPressed = async (_account) => {
-        if (_account == undefined) {
+        if (!window.ethereum) {
+            setButtonPopup(true);
+            console.log("Install metamask");
+        } else if (_account == undefined) {
             setButtonPopup2(true);
         } else {
             setLoading(!loading);
-            // dispatch(connectWallet());
-            // dispatch(connect());
+            console.log("account:", _account);
             if (_account == null) {
                 const accounts = await window.ethereum.request({
                     method: "eth_accounts",
                 });
                 _account = accounts[0];
-            }
-            console.log("account:", _account);
-            if (!window.ethereum) {
-                setButtonPopup(true);
-                console.log("Install metamask");
-                setLoading(!loading);
             } else if ((await fetchCheck(_account)) == 1) {
                 setLoading(!loading);
                 navigate("/menu");
@@ -186,8 +182,9 @@ function Login() {
                     />
                 </div>
                 <Dialog trigger={buttonPopup} setTrigger={setButtonPopup}>
-                  
-                    <h3 className="titleText" style={{'color':'#429136'}}>Metamask is not install </h3>
+                    <h3 className="titleText" style={{ color: "#429136" }}>
+                        Metamask is not install{" "}
+                    </h3>
                     <br></br>
                     <p className="contentText">
                         Please install metamask at:{" "}
@@ -197,7 +194,7 @@ function Login() {
                     </p>
                 </Dialog>
                 <Dialog trigger={buttonPopup2} setTrigger={setButtonPopup2}>
-                    <h3 className="titleText" style={{'color':'#FF5C87'}}>
+                    <h3 className="titleText" style={{ color: "#FF5C87" }}>
                         You are not logged in Metamask
                     </h3>
                     <br></br>
