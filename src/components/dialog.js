@@ -8,7 +8,7 @@ function Dialog (props) {
         <button className='close-btn' onClick={()=>props.setTrigger(false)}>
           X
         </button>
-        {props.children}
+        <div style={{"display":"flex", "flexDirection":'column'}}>{props.children}</div>
       </div>
     </div>
   ):'';

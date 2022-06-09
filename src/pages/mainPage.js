@@ -186,7 +186,8 @@ function Login() {
                     />
                 </div>
                 <Dialog trigger={buttonPopup} setTrigger={setButtonPopup}>
-                    <h3 className="titleText">Metamask wallet not installed</h3>
+                  
+                    <h3 className="titleText" style={{'color':'#429136'}}>Metamask is not install </h3>
                     <br></br>
                     <p className="contentText">
                         Please install metamask at:{" "}
@@ -196,9 +197,16 @@ function Login() {
                     </p>
                 </Dialog>
                 <Dialog trigger={buttonPopup2} setTrigger={setButtonPopup2}>
-                    <h3 className="titleText">
+                    <h3 className="titleText" style={{'color':'#FF5C87'}}>
                         You are not logged in Metamask
                     </h3>
+                    <br></br>
+                    <p className="contentText">
+                        For more info please look at:{" "}
+                        <a className="link" href="https://metamask.io/">
+                            https://metamask.io/
+                        </a>
+                    </p>
                 </Dialog>
             </div>
         </div>
