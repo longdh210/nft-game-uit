@@ -45,6 +45,8 @@ export default function AlertDialog () {
           <DialogContent className='temp'>
             <div className='tutorialLayout1'>
               <img src={Tutorial} alt={'Tutorial Image'} className={'tutorialImage'}></img>
+             
+            
             </div>
             <div style={{'width': '3%'}}></div>
             <div className='tutorialLayout2'>
