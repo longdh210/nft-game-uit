@@ -122,6 +122,9 @@ const RandomItems = ({
             compWinCount++;
         }
         if (userWinCount == 3 || compWinCount == 3) {
+            userChoice(result[0]);
+            computerChoice(result[1]);
+            resultMatch(result[3]);
             handleCountDownChange5s();
             resultToPlayPage(showResult);
             console.log("Final:");
