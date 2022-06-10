@@ -8,7 +8,7 @@ import TutorialDialog from "../components/tutorial";
 import { VerusCard } from "../components/verusCard";
 import FinalResult from "../components/finalResult";
 import CountDown from "../components/countDown";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import "../styles/playPage.css";
 import AlertDialog from "../components/UIPopup";
@@ -30,8 +30,8 @@ function Play() {
     const [result, setResult] = useState("");
     const [showRemovedCard, setShowRemovedCard] = useState(false);
     const [showFinalResult, setShowFinalResult] = useState(false);
-    const [userHP, setUserHP] = useState(5);
-    const [computerHP, setComputerHP] = useState(5);
+    const [userHP, setUserHP] = useState(3);
+    const [computerHP, setComputerHP] = useState(3);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -69,8 +69,7 @@ function Play() {
         } else if (resultMatchData == "Bot win") {
             setUserHP(userHP - 1);
         } else if (resultMatchData == "Draw") {
-            setUserHP(userHP - 1);
-            setComputerHP(computerHP - 1);
+            console.log("Draw");
         }
     };
 
@@ -132,7 +131,7 @@ function Play() {
                                 />{" "}
                                 Bot
                             </div>
-                            <div className="user-hp">HP: {computerHP}/5</div>
+                            <div className="user-hp">HP: {computerHP}/3</div>
                         </div>
                     </div>
                     <div className="layoutSecond">
@@ -181,14 +180,14 @@ function Play() {
                                     src={UserAvt}
                                     alt="user-avt"
                                 />
-                                {blockchain.account != ""
+                                {blockchain.account != null
                                     ? `${blockchain.account.substring(
                                           0,
                                           25
                                       )}...`
                                     : "Player"}
                             </div>
-                            <div className="user-hp">HP: {userHP}/5</div>
+                            <div className="user-hp">HP: {userHP}/3</div>
                         </div>
                         <div className="userCardList">
                             {render ? (
@@ -240,12 +239,11 @@ function Play() {
                                         setButtonPopup(true);
                                     }}
                                 /> */}
-                                <AlertDialog/>
+                                <AlertDialog />
                             </div>
                         </div>
                     </div>
                 </div>
-            
             </div>
         </div>
     );

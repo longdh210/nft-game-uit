@@ -2,7 +2,7 @@ const initialState = {
     loading: false,
     allTokens: [],
     allOwnerTokens: [],
-    balanceTokens: 0,
+    balanceTokens: "...",
     error: false,
     errorMsg: "",
 };

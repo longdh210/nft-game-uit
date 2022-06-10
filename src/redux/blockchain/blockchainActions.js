@@ -65,10 +65,15 @@ export const connect = () => {
                         })
                     );
                     window.ethereum.on("accountsChanged", (accounts) => {
-                        dispatch(updateAccount(accounts[0]));
-                        window.location.reload();
-                        // window.location.reload(false);
-                        console.log("run in action");
+                        if (!window.ethereum) {
+                            console.log("run");
+                            window.location.href = "http://localhost:3000";
+                        } else {
+                            dispatch(updateAccount(accounts[0]));
+                            window.location.href = "http://localhost:3000";
+                            // window.location.reload(false);
+                            console.log("run in action");
+                        }
                     });
                     window.ethereum.on("chainChanged", () => {
                         window.location.reload();

@@ -14,17 +14,24 @@ let rockItemsCopyComp = [...rockItems];
 let paperItemsCopyComp = [...paperItems];
 let scissorItemsCopyComp = [...scissorItems];
 
+console.log("Mount");
+
 // Random first item for user
 let firstItems = randomItems(
     rockItemsCopyUser,
     paperItemsCopyUser,
     scissorItemsCopyUser
 );
-console.log("firstItems", firstItems);
-
+let items = firstItems;
 let userWinCount = 0;
 let compWinCount = 0;
-let items = firstItems;
+// let items = firstItems;
+
+// console.log("itemsFirstMount", firstItems);
+console.log("start");
+console.log("rock", rockItemsCopyUser);
+console.log("paper", paperItemsCopyUser);
+console.log("scissor", scissorItemsCopyUser);
 
 const RandomItems = ({
     countDown,
@@ -42,9 +49,36 @@ const RandomItems = ({
     const [userClick, setUserClick] = useState(false);
     const [firstMount, setFirstMount] = useState(true);
     const [showResult, setShowResult] = useState(true);
-    const [final, setFinal] = useState(false);
+    const [locationKeys, setLocationKeys] = useState([]);
+    // const [items, setItems] = useState(firstItems);
+
+    useEffect(() => {
+        window.onpopstate = () => {
+            rockItemsCopyUser = [...rockItems];
+            paperItemsCopyUser = [...paperItems];
+            scissorItemsCopyUser = [...scissorItems];
+            rockItemsCopyComp = [...rockItems];
+            paperItemsCopyComp = [...paperItems];
+            scissorItemsCopyComp = [...scissorItems];
+            firstItems = randomItems(
+                rockItemsCopyUser,
+                paperItemsCopyUser,
+                scissorItemsCopyUser
+            );
+            items = firstItems;
+            userWinCount = 0;
+            compWinCount = 0;
+            console.log("you back");
+        };
+    });
     // let numCard = 12;
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
+
+    // console.log("start");
+    // console.log("rock", rockItemsCopyUser);
+    // console.log("paper", paperItemsCopyUser);
+    // console.log("scissor", scissorItemsCopyUser);
+    // console.log("firstItemsInside", firstItems);
 
     // Reset countdown from playPage
     const handleCountDownChange10s = useCallback(() => {
@@ -58,33 +92,22 @@ const RandomItems = ({
     useEffect(() => {
         if (firstMount == true) {
             handleCountDownChange5s();
-            console.log("run card left 12");
+            // console.log("run card left 12");
             // cardleft();
         }
         if (countDown == 0 && userClick == false && firstMount == false) {
             autoRandomItem();
             handleCountDownChange5s();
-            console.log("run card left -3");
+            // console.log("run card left -3");
             cardleft();
             resultToPlayPage(showResult);
-            // if (final == true) {
-            //     alertLog(userWinCount, compWinCount);
-            // }
         }
         setFirstMount(false);
     }, [countDown]);
 
-    const alertLog = (userWinCount, compWinCount) => {
-        if (userWinCount > compWinCount) {
-            alert("User win");
-        } else if (compWinCount > userWinCount) {
-            alert("Computer win");
-        } else {
-            alert("Draw");
-        }
-    };
-
     const autoRandomItem = async () => {
+        console.log("firstItem", firstItems);
+        console.log("item", items);
         const randomItem = items[Math.floor(Math.random() * 3)];
         let result = game(
             randomItem,
@@ -92,15 +115,46 @@ const RandomItems = ({
             paperItemsCopyComp,
             scissorItemsCopyComp
         );
+        console.log("result", result);
         if (result[2] == 1) {
             userWinCount++;
         } else if (result[2] == -1) {
             compWinCount++;
         }
+        if (userWinCount == 3 || compWinCount == 3) {
+            handleCountDownChange5s();
+            resultToPlayPage(showResult);
+            console.log("Final:");
+            console.log("user", userWinCount);
+            console.log("comp", compWinCount);
+            getUserWinCount(userWinCount);
+            getComputerWinCount(compWinCount);
+            // Reset variables
+            userWinCount = 0;
+            compWinCount = 0;
+            rockItemsCopyUser = [...rockItems];
+            paperItemsCopyUser = [...paperItems];
+            scissorItemsCopyUser = [...scissorItems];
+            rockItemsCopyComp = [...rockItems];
+            paperItemsCopyComp = [...paperItems];
+            scissorItemsCopyComp = [...scissorItems];
+            console.log("end");
+            console.log("rock", rockItemsCopyUser);
+            console.log("paper", paperItemsCopyUser);
+            console.log("scissor", scissorItemsCopyUser);
+            firstItems = randomItems(
+                rockItemsCopyUser,
+                paperItemsCopyUser,
+                scissorItemsCopyUser
+            );
+            items = firstItems;
+            console.log("itemsEnd", firstItems);
+            await fetchUpdate(blockchain.account);
+            finalResult();
+        }
         userChoice(result[0]);
         computerChoice(result[1]);
         resultMatch(result[3]);
-        console.log("rock", rockItemsCopyUser);
         // Check current item
         const tempItems = randomItems(
             rockItemsCopyUser,
@@ -108,7 +162,8 @@ const RandomItems = ({
             scissorItemsCopyUser
         );
         if (tempItems != 0) {
-            // console.log("items", tempItems);
+            console.log("reset");
+            console.log("items", tempItems);
             // setItems(tempItems);
             items = tempItems;
             // console.log("items set", items);
@@ -129,16 +184,19 @@ const RandomItems = ({
             rockItemsCopyComp = [...rockItems];
             paperItemsCopyComp = [...paperItems];
             scissorItemsCopyComp = [...scissorItems];
+            console.log("end");
+            console.log("rock", rockItemsCopyUser);
+            console.log("paper", paperItemsCopyUser);
+            console.log("scissor", scissorItemsCopyUser);
             firstItems = randomItems(
                 rockItemsCopyUser,
                 paperItemsCopyUser,
                 scissorItemsCopyUser
             );
+            items = firstItems;
+            console.log("itemsEnd", firstItems);
             await fetchUpdate(blockchain.account);
-            // alertLog(userWinCount, compWinCount);
             finalResult();
-            // handleCountDownChange5s();
-            // navigate("/menu");
         }
     };
 
@@ -157,10 +215,44 @@ const RandomItems = ({
             paperItemsCopyComp,
             scissorItemsCopyComp
         );
+        console.log("result", result);
         if (result[2] == 1) {
             userWinCount++;
         } else if (result[2] == -1) {
             compWinCount++;
+        }
+        if (userWinCount == 3 || compWinCount == 3) {
+            console.log("userWinCount", userWinCount);
+            console.log("compWinCount", compWinCount);
+            handleCountDownChange5s();
+            resultToPlayPage(showResult);
+            console.log("Final:");
+            console.log("user", userWinCount);
+            console.log("comp", compWinCount);
+            getUserWinCount(userWinCount);
+            getComputerWinCount(compWinCount);
+            // Reset variables
+            userWinCount = 0;
+            compWinCount = 0;
+            rockItemsCopyUser = [...rockItems];
+            paperItemsCopyUser = [...paperItems];
+            scissorItemsCopyUser = [...scissorItems];
+            rockItemsCopyComp = [...rockItems];
+            paperItemsCopyComp = [...paperItems];
+            scissorItemsCopyComp = [...scissorItems];
+            console.log("end");
+            console.log("rock", rockItemsCopyUser);
+            console.log("paper", paperItemsCopyUser);
+            console.log("scissor", scissorItemsCopyUser);
+            firstItems = randomItems(
+                rockItemsCopyUser,
+                paperItemsCopyUser,
+                scissorItemsCopyUser
+            );
+            items = firstItems;
+            console.log("itemsEnd", firstItems);
+            await fetchUpdate(blockchain.account);
+            finalResult();
         }
         userChoice(result[0]);
         computerChoice(result[1]);
@@ -172,8 +264,11 @@ const RandomItems = ({
             scissorItemsCopyUser
         );
         if (tempItems != 0) {
+            console.log("reset");
+            console.log("items", tempItems);
             // setItems(tempItems);
             items = tempItems;
+            // console.log("items set", items);
         } else {
             handleCountDownChange5s();
             resultToPlayPage(showResult);
@@ -191,16 +286,19 @@ const RandomItems = ({
             rockItemsCopyComp = [...rockItems];
             paperItemsCopyComp = [...paperItems];
             scissorItemsCopyComp = [...scissorItems];
+            console.log("end");
+            console.log("rock", rockItemsCopyUser);
+            console.log("paper", paperItemsCopyUser);
+            console.log("scissor", scissorItemsCopyUser);
             firstItems = randomItems(
                 rockItemsCopyUser,
                 paperItemsCopyUser,
                 scissorItemsCopyUser
             );
+            items = firstItems;
+            console.log("itemsEnd", firstItems);
             await fetchUpdate(blockchain.account);
-            // alertLog(userWinCount, compWinCount);
             finalResult();
-            // handleCountDownChange5s();
-            // navigate("/menu");
         }
     };
 
