@@ -81,23 +81,24 @@ const RandomItems = ({
     // console.log("firstItemsInside", firstItems);
 
     // Reset countdown from playPage
-    const handleCountDownChange10s = useCallback(() => {
-        onCountDownChange(10);
-    }, [onCountDownChange]);
 
     const handleCountDownChange5s = useCallback(() => {
         onCountDownChange(5);
     }, [onCountDownChange]);
 
+    const handleCountDownChange15s = useCallback(() => {
+        onCountDownChange(15);
+    }, [onCountDownChange]);
+
     useEffect(() => {
         if (firstMount == true) {
-            handleCountDownChange5s();
+            handleCountDownChange15s();
             // console.log("run card left 12");
             // cardleft();
         }
         if (countDown == 0 && userClick == false && firstMount == false) {
             autoRandomItem();
-            handleCountDownChange5s();
+            handleCountDownChange15s();
             // console.log("run card left -3");
             cardleft();
             resultToPlayPage(showResult);
