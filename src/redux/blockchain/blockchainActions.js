@@ -67,10 +67,12 @@ export const connect = () => {
                     window.ethereum.on("accountsChanged", (accounts) => {
                         if (!window.ethereum) {
                             console.log("run");
-                            window.location.href = "http://localhost:3000";
+                            window.location.href =
+                                "https://rps-nft-game.herokuapp.com/";
                         } else {
                             dispatch(updateAccount(accounts[0]));
-                            window.location.href = "http://localhost:3000";
+                            window.location.href =
+                                "https://rps-nft-game.herokuapp.com/";
                             // window.location.reload(false);
                             console.log("run in action");
                         }
