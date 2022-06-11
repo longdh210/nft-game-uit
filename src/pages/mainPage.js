@@ -16,8 +16,9 @@ import Dialog from "../components/dialog";
 import { fetchPost, fetchCheck, fetchUpdate } from "../fetchAPI/fetchAPI";
 import ClipLoader from "react-spinners/ClipLoader";
 import video from "../assets/rotate1.mp4";
-import metamask from "../assets/metamask.gif"
-import metamask2 from "../assets/metamask2.gif"
+import metamask from "../assets/metamask.gif";
+import metamask2 from "../assets/metamask2.gif";
+import polygon from "../assets/poly.webp";
 
 function Login() {
     const dispatch = useDispatch();
@@ -29,11 +30,14 @@ function Login() {
 
     const [buttonPopup, setButtonPopup] = useState(false);
     const [buttonPopup2, setButtonPopup2] = useState(false);
+    const [buttonPopup3, setButtonPopup3] = useState(false);
 
     const playPressed = async (_account) => {
         if (!window.ethereum) {
             setButtonPopup(true);
             console.log("Install metamask");
+        } else if (_account == undefined || blockchain.errorMsg != "") {
+            setButtonPopup3(true);
         } else if (_account == undefined) {
             setButtonPopup2(true);
         } else {
@@ -184,16 +188,15 @@ function Login() {
                     />
                 </div>
                 <Dialog trigger={buttonPopup} setTrigger={setButtonPopup}>
-                <img
-                            src={metamask}
-                            alt="Group 13"
-                            className="metamaskLogo "
-                        />
+                    <img
+                        src={metamask}
+                        alt="Group 13"
+                        className="metamaskLogo "
+                    />
                     <h3 className="titleText" style={{ color: "#429136" }}>
-                        Metamask is not install{" "}  
+                        Metamask is not install{" "}
                     </h3>
-                
-               
+
                     <p className="contentText">
                         Please install metamask at:{" "}
                         <a className="link" href="https://metamask.io/">
@@ -202,19 +205,39 @@ function Login() {
                     </p>
                 </Dialog>
                 <Dialog trigger={buttonPopup2} setTrigger={setButtonPopup2}>
-                <img
-                            src={metamask2}
-                            alt="Group 13"
-                            className="metamaskLogo "
-                        />
+                    <img
+                        src={metamask2}
+                        alt="Group 13"
+                        className="metamaskLogo "
+                    />
                     <h3 className="titleText" style={{ color: "#FF5C87" }}>
                         You are not logged in Metamask
                     </h3>
-                   
+
                     <p className="contentText">
                         For more info please look at:{" "}
                         <a className="link" href="https://metamask.io/">
                             https://metamask.io/
+                        </a>
+                    </p>
+                </Dialog>
+                <Dialog trigger={buttonPopup3} setTrigger={setButtonPopup3}>
+                    <img
+                        src={polygon}
+                        alt="Group 13"
+                        className="metamaskLogo "
+                    />
+                    <h3 className="titleText" style={{ color: "#FF5C87" }}>
+                        Please connect to Mumbai testnet
+                    </h3>
+
+                    <p className="contentText">
+                        For more info please look at:{" "}
+                        <a
+                            className="link"
+                            href="https://medium.com/stakingbits/how-to-connect-polygon-mumbai-testnet-to-metamask-fc3487a3871f"
+                        >
+                            https://medium.com/stakingbits/how-to-connect-polygon-mumbai-testnet-to-metamask-fc3487a3871f
                         </a>
                     </p>
                 </Dialog>

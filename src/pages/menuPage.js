@@ -38,12 +38,9 @@ function Menu() {
             setLoading(true);
             dispatch(connectWallet());
             dispatch(connect());
-            console.log("run");
-            console.log("account run:", _account);
         }
         if (_account != null) {
             setLoading(false);
-            console.log("run set false");
         }
     };
 
@@ -51,7 +48,6 @@ function Menu() {
         setLoading(true);
         dispatch(connectWallet());
         dispatch(connect());
-        console.log("account:", blockchain.account);
         checkBlockchainAccount(blockchain.account);
         setMissions(await fetchMissions());
         if (blockchain.account != null) {
@@ -82,8 +78,6 @@ function Menu() {
     const checkData = () => {
         if (missions != undefined && userData != undefined) {
             setLoading(false);
-            console.log("missions:", missions);
-            console.log("userData:", userData);
         }
     };
 
