@@ -8,8 +8,8 @@ ul {
   margin-top      : 6.5vh;
   max-width       : 483px;
   width           : 23vw;
-  height          : min-content;
-  max-height      : 250px;
+  min-height          : min-content;
+  height: min-content;
   background-color: #555555;
   border          : 0.5vw solid white;
   display         : block;
@@ -19,7 +19,6 @@ ul {
 
 .text {
   margin     : 0;
-
   font-size  : calc(1vw + 1vh );
   color      : #FFFFFF;
   font-family: Righteous;
