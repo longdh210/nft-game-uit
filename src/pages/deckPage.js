@@ -11,19 +11,19 @@ function RockRow () {
     <div className='customRow'>
          
       <Grid >
-        <img className='enemyCard' alt={"token image"} src={imageToken.it[0]} />
+        <img className='deckCard' alt={"token image"} src={imageToken.it[0]} />
       </Grid>
       <Grid>
-        <img className='enemyCard' alt={"token image"} src={imageToken.it[1]} />
+        <img className='deckCard' alt={"token image"} src={imageToken.it[1]} />
       </Grid>
       <Grid>
-        <img className='enemyCard' alt={"token image"} src={imageToken.it[2]} />
+        <img className='deckCard' alt={"token image"} src={imageToken.it[2]} />
       </Grid>
       <Grid>
-        <img className='enemyCard' alt={"token image"} src={imageToken.it[3]} />
+        <img className='deckCard' alt={"token image"} src={imageToken.it[3]} />
       </Grid>
       <Grid>
-        <img className='enemyCard' alt={"token image"} src={imageToken.it[4]} />
+        <img className='deckCard' alt={"token image"} src={imageToken.it[4]} />
       </Grid>
     </div>
   )
@@ -34,19 +34,19 @@ function PaperRow () {
       <div className='customRow'>
     
         <Grid >
-          <img className='enemyCard' alt={"token image"} src={imageToken.it[5]} />
+          <img className='deckCard' alt={"token image"} src={imageToken.it[5]} />
         </Grid>
         <Grid>
-          <img className='enemyCard' alt={"token image"} src={imageToken.it[6]} />
+          <img className='deckCard' alt={"token image"} src={imageToken.it[6]} />
         </Grid>
         <Grid>
-          <img className='enemyCard' alt={"token image"} src={imageToken.it[7]} />
+          <img className='deckCard' alt={"token image"} src={imageToken.it[7]} />
         </Grid>
         <Grid>
-          <img className='enemyCard' alt={"token image"} src={imageToken.it[8]} />
+          <img className='deckCard' alt={"token image"} src={imageToken.it[8]} />
         </Grid>
         <Grid>
-          <img className='enemyCard' alt={"token image"} src={imageToken.it[9]} />
+          <img className='deckCard' alt={"token image"} src={imageToken.it[9]} />
         </Grid>
       </div>
     )
@@ -57,19 +57,19 @@ function PaperRow () {
       <div className='customRow'>
 
         <Grid >
-          <img className='enemyCard' alt={"token image"} src={imageToken.it[10]} />
+          <img className='deckCard' alt={"token image"} src={imageToken.it[10]} />
         </Grid>
         <Grid>
-          <img className='enemyCard' alt={"token image"} src={imageToken.it[11]} />
+          <img className='deckCard' alt={"token image"} src={imageToken.it[11]} />
         </Grid>
         <Grid>
-          <img className='enemyCard' alt={"token image"} src={imageToken.it[12]} />
+          <img className='deckCard' alt={"token image"} src={imageToken.it[12]} />
         </Grid>
         <Grid>
-          <img className='enemyCard' alt={"token image"} src={imageToken.it[13]} />
+          <img className='deckCard' alt={"token image"} src={imageToken.it[13]} />
         </Grid>
         <Grid>
-          <img className='enemyCard' alt={"token image"} src={imageToken.it[14]} />
+          <img className='deckCard' alt={"token image"} src={imageToken.it[14]} />
         </Grid>
       </div>
     )
