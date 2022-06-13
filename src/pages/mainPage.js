@@ -228,7 +228,7 @@ function Login() {
                         className="metamaskLogo "
                     />
                     <h3 className="titleText" style={{ color: "#FF5C87" }}>
-                        Please connect to Mumbai testnet
+                        Please connect to Mumbai testnet and reload
                     </h3>
 
                     <p className="contentText">
