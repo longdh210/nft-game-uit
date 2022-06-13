@@ -90,9 +90,13 @@ function Menu() {
         }
     };
 
-    const handleClick = () => {
+    const navigateDeveloping = () => {
         navigate("/developing");
     };
+    const navigateDeck = () => {
+        navigate("/deck");
+    };
+    
 
     if (loading == true)
         return (
@@ -137,7 +141,7 @@ function Menu() {
                                         Play with bots
                                     </div>
                                 </li>
-                                <li className="container" onClick={handleClick}>
+                                <li className="container" onClick={navigateDeveloping}>
                                     <img
                                         className="playzoneContainer"
                                         src={rankSVG}
@@ -147,7 +151,7 @@ function Menu() {
                                         Play ranked
                                     </div>
                                 </li>
-                                <li className="container" onClick={handleClick}>
+                                <li className="container" onClick={navigateDeveloping}>
                                     <img
                                         className="playzoneContainer"
                                         src={historySVG}
@@ -167,19 +171,19 @@ function Menu() {
                                 className="smallContainer"
                                 src={shoppingCartSVG}
                                 alt="shoppingcart"
-                                onClick={handleClick}
+                                onClick={navigateDeveloping}
                             ></img>
                             <img
                                 className="smallContainer"
-                                src={cardsSVG}
+                                src={cardsSVG}  
                                 alt="cards"
-                                onClick={handleClick}
+                                onClick={navigateDeck}
                             ></img>
                             <img
                                 className="smallContainer"
                                 src={profileSVG}
                                 alt="profile"
-                                onClick={handleClick}
+                                onClick={navigateDeveloping}
                             ></img>
                             {/* <img
                             className="smallContainer"
